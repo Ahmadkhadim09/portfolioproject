@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Img } from "@/components/Img";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -12,25 +13,7 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const gallery = [
-  ["h1", "DW6yvLLV.webp"],
-  ["h2", "B9GrsYwW.webp"],
-  ["h3", "Dr6jIs2K.webp"],
-  ["h4", "BzQqrRIX.webp"],
-  ["h5", "BBWoL6zN.webp"],
-  ["h6", "C2oKiyU1.webp"],
-  ["h7", "B0yL32HH.webp"],
-  ["h8", "BAEkUFZ8.webp"],
-  ["h9", "DCRfwim3.jpeg"],
-  ["h10", "xubXoT6Z.jpeg"],
-  ["h11", "D6NN6q5D.jpeg"],
-  ["h12", "LGgxNPB6.jpeg"],
-  ["h13", "Ba-abrrY.jpeg"],
-  ["h14", "B6RwGKtL.jpeg"],
-  ["h15", "Dsab9ENk.jpeg"],
-  ["h16", "Bg9V7w0R.jpeg"],
-  ["h17", "C0QQnhE5.jpeg"],
-];
+const gallery = Array.from({ length: 17 }, (_, i) => i + 1);
 
 const stats = [
   { value: "350+", label: "Projects Delivered", desc: "Successfully executing over 350+ projects to drive innovation and growth." },
@@ -76,11 +59,12 @@ function About() {
           Moments from seminars, panels and stage appearances across the industry.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-          {gallery.map(([slug, file]) => (
-            <div key={slug} className="glow-panel aspect-[4/5] overflow-hidden rounded-2xl">
-              <img
-                src={`https://owaisahmadkhan.com/assets/${slug}-${file}`}
-                alt={`Owais Ahmad Khan — ${slug}`}
+          {gallery.map((n) => (
+            <div key={n} className="glow-panel aspect-[4/5] overflow-hidden rounded-2xl">
+              <Img
+                src={`/images/gallery-${n}.jpg`}
+                alt={`Owais Ahmad Khan — photo ${n}`}
+                placeholderLabel={`Gallery ${n}`}
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
               />
