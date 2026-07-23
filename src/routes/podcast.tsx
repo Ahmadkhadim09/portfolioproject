@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Play } from "lucide-react";
+import { Img } from "@/components/Img";
 
 export const Route = createFileRoute("/podcast")({
   head: () => ({
@@ -49,9 +50,10 @@ function Podcast() {
               className="glow-panel group overflow-hidden rounded-2xl"
             >
               <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
+                <Img
+                  src={`/images/podcast-${v.id}.jpg`}
                   alt={v.title}
+                  placeholderLabel={v.title}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

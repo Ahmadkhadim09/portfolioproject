@@ -61,11 +61,12 @@ function Home() {
             </div>
             <div className="mt-10 flex items-center gap-4">
               <div className="flex -space-x-3">
-                {["h1", "h2", "h3", "h4"].map((s) => (
-                  <img
-                    key={s}
-                    src={`https://owaisahmadkhan.com/assets/${s}-${s === "h1" ? "DW6yvLLV" : s === "h2" ? "B9GrsYwW" : s === "h3" ? "Dr6jIs2K" : "BzQqrRIX"}.webp`}
+                {[1, 2, 3, 4].map((n) => (
+                  <Img
+                    key={n}
+                    src={`/images/avatar-${n}.jpg`}
                     alt=""
+                    placeholderLabel={`A${n}`}
                     className="h-10 w-10 rounded-full border-2 border-background object-cover"
                   />
                 ))}
@@ -87,17 +88,19 @@ function Home() {
               <div className="font-display text-5xl font-bold text-primary">350+</div>
               <div className="mt-2 text-sm text-muted-foreground">Projects Delivered</div>
             </div>
-            <div className="glow-panel col-span-1 overflow-hidden rounded-2xl">
-              <img
-                src="https://owaisahmadkhan.com/assets/h9-DCRfwim3.jpeg"
+            <div className="glow-panel col-span-1 aspect-square overflow-hidden rounded-2xl">
+              <Img
+                src="/images/hero-speaking.jpg"
                 alt="Owais Ahmad Khan speaking"
+                placeholderLabel="Speaking Photo"
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="glow-panel col-span-1 overflow-hidden rounded-2xl">
-              <img
-                src="https://owaisahmadkhan.com/assets/h5-BBWoL6zN.webp"
+            <div className="glow-panel col-span-1 aspect-square overflow-hidden rounded-2xl">
+              <Img
+                src="/images/hero-side.jpg"
                 alt=""
+                placeholderLabel="Portrait"
                 className="h-full w-full object-cover"
               />
             </div>

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Img } from "@/components/Img";
 
 export const Route = createFileRoute("/awards")({
   head: () => ({
@@ -12,74 +13,49 @@ export const Route = createFileRoute("/awards")({
   component: Awards,
 });
 
-const awards = [
-  ["10", "C1WZB765.png"],
-  ["1", "CC2idTUf.png"],
-  ["2", "ByyF3-_a.png"],
-  ["3", "BdjZBPBo.png"],
-  ["4", "sIOpyl5-.png"],
-  ["5", "GY4lX8s2.png"],
-  ["6", "B5PNotq6.png"],
-  ["7", "DKlquHpE.png"],
-  ["8", "eNBlnuj5.png"],
-  ["9", "Ds0mH89j.png"],
-];
-
-const certs = [
-  ["cone", "CL529mAm.webp"],
-  ["ctwo", "D7-VmKts.webp"],
-  ["cthree", "BroXIcvB.webp"],
-  ["cfour", "BG-QMxQP.webp"],
-  ["cfive", "DG5iTpQz.webp"],
-  ["csix", "BY8F04R7.webp"],
-  ["cseven", "bjwfSMnJ.webp"],
-  ["ceight", "CLY_RiJT.webp"],
-  ["cnine", "pKtBph8H.webp"],
-  ["cten", "CEv_4FZF.webp"],
-  ["celeven", "CW3OZQCu.webp"],
-  ["ctwelve", "C_VBWYlm.webp"],
-];
+const awards = Array.from({ length: 10 }, (_, i) => i + 1);
+const certs = Array.from({ length: 12 }, (_, i) => i + 1);
 
 const testimonials = [
   {
     name: "Huzaifa Ali",
     role: "React & Next JS Developer — Spark AI",
-    avatar: "https://owaisahmadkhan.com/assets/huzaifa-2OJSdIbj.webp",
+    slug: "huzaifa",
     quote:
       "Sir Owais played an integral role in helping me develop my skills. He positively influenced my career trajectory and helped me build confidence in this challenging field.",
   },
   {
     name: "Muhammad Zeeshan Tanveer",
     role: "Web Developer — Soloinsight Inc.",
-    avatar: "https://owaisahmadkhan.com/assets/zeeshan-TvGiwOiQ.webp",
+    slug: "zeeshan",
     quote:
       "He exceeded my expectations with his exceptional leadership, strategic thinking, and technical skills. Every project delivered on time and within budget.",
   },
   {
     name: "Zahid Imam",
     role: "Digital Evangelist — I'm Innovator",
-    avatar: "https://owaisahmadkhan.com/assets/zahid-Bi2q9mYA.webp",
+    slug: "zahid",
     quote:
       "Beyond his technical prowess, Owais stood out for his exceptional cooperation and kindness towards every team member.",
   },
   {
     name: "Ahmed Sohail",
     role: "Principal Software Engineer — Certified Nerds",
-    avatar: "https://owaisahmadkhan.com/assets/ahmad-BiLaL8ze.webp",
+    slug: "ahmed",
     quote:
       "Consistently delivered great quality code and service within schedule. Strong technical, analytical, and communication skills.",
   },
   {
     name: "Ushna Sadaf Dar",
     role: "Guest Speaker Testimonial",
-    avatar: "https://owaisahmadkhan.com/assets/ushna-CVbSez7c.webp",
+    slug: "ushna",
     quote:
       "A skilled, innovative, and professional leader who would be an asset to any team. He has proven his expertise and excellence in the IT industry.",
   },
   {
     name: "Hamza Afzal",
     role: "WordPress Developer — S&D Marketing",
-    avatar: "https://owaisahmadkhan.com/assets/hamza-DHJ67O-x.webp",
+    slug: "hamza",
     quote:
       "Dedicated, technically strong, and eager to learn new technologies. Delivered tasks in very tight deadlines with best quality.",
   },
@@ -100,13 +76,14 @@ function Awards() {
       <section className="mx-auto max-w-7xl px-6 pb-16">
         <h2 className="font-display text-2xl font-bold md:text-3xl">Awards</h2>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {awards.map(([n, f]) => (
-            <div key={n} className="glow-panel flex aspect-square items-center justify-center rounded-2xl p-4">
-              <img
-                src={`https://owaisahmadkhan.com/assets/${n}-${f}`}
+          {awards.map((n) => (
+            <div key={n} className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
+              <Img
+                src={`/images/award-${n}.png`}
                 alt={`Award ${n}`}
+                placeholderLabel={`Award ${n}`}
                 loading="lazy"
-                className="max-h-full max-w-full object-contain"
+                className="h-full w-full object-contain"
               />
             </div>
           ))}
@@ -116,13 +93,14 @@ function Awards() {
       <section className="mx-auto max-w-7xl px-6 pb-16">
         <h2 className="font-display text-2xl font-bold md:text-3xl">Certifications</h2>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-          {certs.map(([n, f]) => (
-            <div key={n} className="glow-panel flex aspect-[3/4] items-center justify-center rounded-2xl p-3">
-              <img
-                src={`https://owaisahmadkhan.com/assets/${n}-${f}`}
+          {certs.map((n) => (
+            <div key={n} className="glow-panel flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl p-3">
+              <Img
+                src={`/images/cert-${n}.png`}
                 alt={`Certification ${n}`}
+                placeholderLabel={`Cert ${n}`}
                 loading="lazy"
-                className="max-h-full max-w-full object-contain"
+                className="h-full w-full object-contain"
               />
             </div>
           ))}
@@ -137,7 +115,12 @@ function Awards() {
               <div key={t.name} className="glow-panel flex flex-col rounded-2xl p-6">
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="h-11 w-11 rounded-full object-cover" />
+                  <Img
+                    src={`/images/testimonial-${t.slug}.jpg`}
+                    alt={t.name}
+                    placeholderLabel={t.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+                    className="h-11 w-11 shrink-0 overflow-hidden rounded-full object-cover"
+                  />
                   <div>
                     <div className="font-display text-sm font-semibold">{t.name}</div>
                     <div className="text-xs text-muted-foreground">{t.role}</div>
