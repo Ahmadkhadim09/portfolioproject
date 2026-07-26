@@ -13,12 +13,13 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
+        <h1 className="text-7xl font-bold gradient-text">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
@@ -26,7 +27,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full gradient-btn gradient-btn-hover px-6 py-2.5 text-sm font-medium text-white"
           >
             Go home
           </Link>
@@ -58,13 +59,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full gradient-btn gradient-btn-hover px-5 py-2.5 text-sm font-medium text-white"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-white/10"
           >
             Go home
           </a>
@@ -92,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -115,17 +116,38 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
+
+  const currentPath = router.state.location.pathname;
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
+      <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+        {/* Animated Background Orbs */}
+        <div className="bg-orb bg-orb-1" aria-hidden="true" />
+        <div className="bg-orb bg-orb-2" aria-hidden="true" />
+        <div className="bg-orb bg-orb-3" aria-hidden="true" />
+
         <SiteHeader />
-        <main className="flex-1">
-          <Outlet />
-        </main>
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={currentPath}
+            className="relative z-10 flex-1"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <Outlet />
+          </motion.main>
+        </AnimatePresence>
         <SiteFooter />
+        <Toaster />
       </div>
     </QueryClientProvider>
   );

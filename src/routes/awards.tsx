@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Award, BadgeCheck } from "lucide-react";
 import { Img } from "@/components/Img";
 
 export const Route = createFileRoute("/awards")({
@@ -13,119 +14,88 @@ export const Route = createFileRoute("/awards")({
   component: Awards,
 });
 
-const awards = Array.from({ length: 10 }, (_, i) => i + 1);
-const certs = Array.from({ length: 12 }, (_, i) => i + 1);
-
-const testimonials = [
-  {
-    name: "Huzaifa Ali",
-    role: "React & Next JS Developer — Spark AI",
-    slug: "huzaifa",
-    quote:
-      "Sir Owais played an integral role in helping me develop my skills. He positively influenced my career trajectory and helped me build confidence in this challenging field.",
-  },
-  {
-    name: "Muhammad Zeeshan Tanveer",
-    role: "Web Developer — Soloinsight Inc.",
-    slug: "zeeshan",
-    quote:
-      "He exceeded my expectations with his exceptional leadership, strategic thinking, and technical skills. Every project delivered on time and within budget.",
-  },
-  {
-    name: "Zahid Imam",
-    role: "Digital Evangelist — I'm Innovator",
-    slug: "zahid",
-    quote:
-      "Beyond his technical prowess, Owais stood out for his exceptional cooperation and kindness towards every team member.",
-  },
-  {
-    name: "Ahmed Sohail",
-    role: "Principal Software Engineer — Certified Nerds",
-    slug: "ahmed",
-    quote:
-      "Consistently delivered great quality code and service within schedule. Strong technical, analytical, and communication skills.",
-  },
-  {
-    name: "Ushna Sadaf Dar",
-    role: "Guest Speaker Testimonial",
-    slug: "ushna",
-    quote:
-      "A skilled, innovative, and professional leader who would be an asset to any team. He has proven his expertise and excellence in the IT industry.",
-  },
-  {
-    name: "Hamza Afzal",
-    role: "WordPress Developer — S&D Marketing",
-    slug: "hamza",
-    quote:
-      "Dedicated, technically strong, and eager to learn new technologies. Delivered tasks in very tight deadlines with best quality.",
-  },
+const awards = [
+  { id: 1, file: "corectaward" },
+  { id: 2, file: "corraward2" },
+  { id: 3, file: "corraward3" },
+  { id: 4, file: "corraward4" },
+];
+const certs = [
+  { id: 1, file: "cert-1" },
+  { id: 2, file: "cert-2" },
+  { id: 3, file: "cert-3" },
+  { id: 4, file: "cert8" },
 ];
 
 function Awards() {
   return (
     <>
-      <section className="diagonal-bg mx-auto max-w-7xl px-6 py-20">
-        <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
-          Awards &amp; Recognition
-        </span>
-        <h1 className="mt-6 max-w-3xl font-display text-4xl font-bold leading-tight md:text-6xl">
-          Two decades of excellence, honored.
-        </h1>
-      </section>
+      <section className="relative flex min-h-[55vh] items-center overflow-hidden rounded-3xl">
+        <div className="absolute inset-0 z-0">
+          <Img
+            src="/images/awardsmainimage.jpg"
+            alt="Awards"
+            className="h-full w-full object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0D0714] via-[#0D0714]/75 to-[#0D0714]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0714] via-transparent to-transparent" />
+        </div>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16">
-        <h2 className="font-display text-2xl font-bold md:text-3xl">Awards</h2>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {awards.map((n) => (
-            <div key={n} className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-              <Img
-                src={`/images/award-${n}.png`}
-                alt={`Award ${n}`}
-                placeholderLabel={`Award ${n}`}
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          ))}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24">
+          <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
+            Awards &amp; Recognition
+          </span>
+          <div className="mt-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500/25 to-cyan-500/20 text-fuchsia-200 shadow-lg shadow-fuchsia-500/20">
+            <Award className="h-7 w-7" />
+          </div>
+          <h1 className="mt-6 max-w-3xl font-display text-4xl font-bold leading-tight md:text-6xl">
+            Two decades of excellence, honored.
+          </h1>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16">
-        <h2 className="font-display text-2xl font-bold md:text-3xl">Certifications</h2>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-          {certs.map((n) => (
-            <div key={n} className="glow-panel flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl p-3">
-              <Img
-                src={`/images/cert-${n}.png`}
-                alt={`Certification ${n}`}
-                placeholderLabel={`Cert ${n}`}
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
+      <section className="pb-16">
+        <div className="awards-container">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/25 to-orange-500/20 text-amber-200">
+              <Award className="h-5 w-5" />
             </div>
-          ))}
+            <h2 className="font-display text-2xl font-bold md:text-3xl">Awards</h2>
+          </div>
+          <div className="awards-grid mt-8">
+            {awards.map((award) => (
+              <div key={award.id} className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
+                <Img
+                  src={`/images/${award.file}.png`}
+                  alt={`Award ${award.id}`}
+                  placeholderLabel={`Award ${award.id}`}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-border/50 bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <h2 className="font-display text-2xl font-bold md:text-3xl">Recommendations</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t) => (
-              <div key={t.name} className="glow-panel flex flex-col rounded-2xl p-6">
-                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-6 flex items-center gap-3">
-                  <Img
-                    src={`/images/testimonial-${t.slug}.jpg`}
-                    alt={t.name}
-                    placeholderLabel={t.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
-                    className="h-11 w-11 shrink-0 overflow-hidden rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-display text-sm font-semibold">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
-                  </div>
-                </div>
+      <section className="pb-16">
+        <div className="awards-container">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-sky-500/20 text-cyan-200">
+              <BadgeCheck className="h-5 w-5" />
+            </div>
+            <h2 className="font-display text-2xl font-bold md:text-3xl">Certifications</h2>
+          </div>
+          <div className="certs-grid mt-8">
+            {certs.map((cert) => (
+              <div key={cert.id} className="glow-panel flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl p-3">
+                <Img
+                  src={`/images/${cert.file}.${cert.file.startsWith("cert8") ? "jpg" : "png"}`}
+                  alt={`Certification ${cert.id}`}
+                  placeholderLabel={`Cert ${cert.id}`}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
               </div>
             ))}
           </div>
