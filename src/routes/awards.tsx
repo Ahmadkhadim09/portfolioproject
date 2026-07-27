@@ -15,16 +15,16 @@ export const Route = createFileRoute("/awards")({
 });
 
 const awards = [
-  { id: 1, file: "corectaward" },
-  { id: 2, file: "corraward2" },
-  { id: 3, file: "corraward3" },
-  { id: 4, file: "corraward4" },
-];
-const certs = [
-  { id: 1, file: "cert-1" },
-  { id: 2, file: "cert-2" },
-  { id: 3, file: "cert-3" },
-  { id: 4, file: "cert8" },
+  { id: 1, file: "awad7", ext: "png", title: "Professional Excellence", description: "Recognized for outstanding professional achievement" },
+  { id: 2, file: "awar10", ext: "png", title: "Outstanding Achievement", description: "Excellence in performance and dedication" },
+  { id: 3, file: "award12", ext: "png", title: "Industry Recognition", description: "Distinguished contribution to the industry" },
+  { id: 4, file: "award4", ext: "png", title: "Distinguished Service", description: "Exceptional service and commitment" },
+  { id: 5, file: "award5", ext: "png", title: "Innovation Award", description: "Pioneering innovative solutions" },
+  { id: 6, file: "award6", ext: "png", title: "Leadership Recognition", description: "Outstanding leadership excellence" },
+  { id: 7, file: "award8", ext: "png", title: "Excellence in Performance", description: "Exceptional performance and results" },
+  { id: 8, file: "award9", ext: "png", title: "Community Impact", description: "Positive influence and community service" },
+  { id: 9, file: "award13", ext: "png", title: "Dedication & Commitment", description: "Unwavering dedication to excellence" },
+  { id: 10, file: "award14", ext: "png", title: "Excellence in Leadership", description: "Visionary leadership and innovation" },
 ];
 
 function Awards() {
@@ -62,40 +62,22 @@ function Awards() {
             </div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Awards</h2>
           </div>
-          <div className="awards-grid mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-8">
             {awards.map((award) => (
-              <div key={award.id} className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-                <Img
-                  src={`/images/${award.file}.png`}
-                  alt={`Award ${award.id}`}
-                  placeholderLabel={`Award ${award.id}`}
-                  loading="lazy"
-                  className="h-full w-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-16">
-        <div className="awards-container">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-sky-500/20 text-cyan-200">
-              <BadgeCheck className="h-5 w-5" />
-            </div>
-            <h2 className="font-display text-2xl font-bold md:text-3xl">Certifications</h2>
-          </div>
-          <div className="certs-grid mt-8">
-            {certs.map((cert) => (
-              <div key={cert.id} className="glow-panel flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl p-3">
-                <Img
-                  src={`/images/${cert.file}.${cert.file.startsWith("cert8") ? "jpg" : "png"}`}
-                  alt={`Certification ${cert.id}`}
-                  placeholderLabel={`Cert ${cert.id}`}
-                  loading="lazy"
-                  className="h-full w-full object-contain"
-                />
+              <div key={award.id} className={award.file ? "award-card" : "award-card-empty"}>
+                {award.file && (
+                  <>
+                    <Img
+                      src={`/images/${award.file}.${award.ext}`}
+                      alt={`Award ${award.id}`}
+                      placeholderLabel={`Award ${award.id}`}
+                      loading="lazy"
+                      className="award-image"
+                    />
+                    <h3 className="award-title">{award.title}</h3>
+                    <p className="award-description">{award.description}</p>
+                  </>
+                )}
               </div>
             ))}
           </div>

@@ -16,7 +16,7 @@ export function SiteFooter() {
             <span className="font-display text-lg font-bold text-white">Owais Ahmad Khan</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/50">
-            CEO &amp; Founder of Zai Systems. Visionary leader, innovative tech entrepreneur, and empowering IT coach.
+            CTO of Zai Systems. Visionary leader, innovative tech entrepreneur, and empowering IT coach.
           </p>
         </RevealOnScroll>
         <RevealOnScroll delay={0.1}>

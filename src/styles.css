@@ -493,3 +493,107 @@
 .animate-marquee {
   animation: marquee 60s linear infinite;
 }
+
+/* ── Award Cards Enhancement ───────────────────────── */
+.award-card {
+  position: relative;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #2d1248 0%, transparent 45%), #0D0714;
+  border-radius: 20px;
+  padding: 60px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.award-card::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.15);
+  filter: blur(70px);
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.award-card:hover {
+  transform: translateY(-10px);
+}
+
+.award-card:hover .award-image {
+  transform: scale(1.08);
+}
+
+.award-image {
+  width: 280px;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 30px rgba(168, 85, 247, 0.15));
+}
+
+.award-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 8px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.award-description {
+  font-size: 0.875rem;
+  color: #a8a8b8;
+  margin-top: 4px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.award-card-empty {
+  position: relative;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, rgba(45, 18, 72, 0.5) 0%, transparent 45%), rgba(13, 7, 20, 0.8);
+  border: 2px dashed rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  padding: 60px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.award-card-empty::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.08);
+  filter: blur(70px);
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.award-card-empty::after {
+  content: "Coming Soon";
+  position: absolute;
+  z-index: 1;
+  font-size: 1rem;
+  color: rgba(139, 92, 246, 0.5);
+  font-weight: 500;
+}

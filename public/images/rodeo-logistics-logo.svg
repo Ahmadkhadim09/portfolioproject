@@ -1,0 +1,22 @@
+<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+  <!-- Main Logo Text -->
+  <text x="200" y="80" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white" letter-spacing="2">
+    RODEO
+  </text>
+  
+  <!-- Circular Icon -->
+  <circle cx="200" cy="80" r="35" fill="none" stroke="white" stroke-width="2"/>
+  <text x="200" y="92" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="white">
+    R
+  </text>
+  
+  <!-- Logistics Text -->
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white" letter-spacing="2">
+    LOGISTICS
+  </text>
+  
+  <!-- Tagline -->
+  <text x="200" y="160" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.7)" letter-spacing="1">
+    THE FUTURE OF RODEO MANAGEMENT
+  </text>
+</svg>

@@ -21,22 +21,34 @@ export const Route = createFileRoute("/")({
 
 const features = [
   {
-    title: "High-End Engineering",
-    desc: "We build scalable, performant product architecture tailored for modern SaaS.",
-    icon: FaCode,
+    title: "AI Integrations",
+    desc: "Integrating LLMs, chatbots, and AI APIs into modern applications.",
+    icon: FaMicrochip,
+    accentClass: "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-400",
+  },
+  {
+    title: "Workflow Automation",
+    desc: "Automating business processes with n8n, APIs, and intelligent workflows.",
+    icon: FaLayerGroup,
     accentClass: "bg-gradient-to-br from-cyan-500/30 to-blue-500/20 text-cyan-400",
   },
   {
-    title: "Premium Aesthetics",
-    desc: "Design systems built with pixel-perfect precision and fluid animations.",
-    icon: FaPaintBrush,
+    title: "AI Agents",
+    desc: "Developing autonomous AI assistants that can analyze, decide, and execute tasks.",
+    icon: FaChartLine,
     accentClass: "bg-gradient-to-br from-fuchsia-500/30 to-violet-500/20 text-fuchsia-400",
   },
   {
-    title: "Instant Shipping",
-    desc: "Our CI/CD pipelines and agile methodologies ensure rapid delivery cycles.",
-    icon: FaRocket,
+    title: "Full-Stack Development",
+    desc: "Building scalable React, Node.js, and database-powered applications.",
+    icon: FaCode,
     accentClass: "bg-gradient-to-br from-amber-500/30 to-orange-500/20 text-amber-400",
+  },
+  {
+    title: "Cloud Deployment",
+    desc: "Deploying secure, production-ready applications with modern DevOps practices.",
+    icon: FaRocket,
+    accentClass: "bg-gradient-to-br from-emerald-500/30 to-lime-500/20 text-emerald-400",
   },
 ];
 
@@ -65,9 +77,9 @@ const heroContent = {
 };
 
 const heroStats = [
-  { value: "50+", label: "Projects Completed", icon: FaChartLine, accentClass: "bg-gradient-to-br from-amber-500/30 to-orange-500/20 text-amber-400" },
-  { value: "20+", label: "Happy Clients", icon: FaUsers, accentClass: "bg-gradient-to-br from-cyan-500/30 to-sky-500/20 text-cyan-400" },
-  { value: "5+", label: "Years Experience", icon: FaClock, accentClass: "bg-gradient-to-br from-emerald-500/30 to-lime-500/20 text-emerald-400" },
+  { value: "350+", label: "Projects Completed", icon: FaChartLine, accentClass: "bg-gradient-to-br from-amber-500/30 to-orange-500/20 text-amber-400" },
+  { value: "120+", label: "Happy Clients", icon: FaUsers, accentClass: "bg-gradient-to-br from-cyan-500/30 to-sky-500/20 text-cyan-400" },
+  { value: "18+", label: "Years Experience", icon: FaClock, accentClass: "bg-gradient-to-br from-emerald-500/30 to-lime-500/20 text-emerald-400" },
 ];
 
 const headlineLines = [
@@ -243,15 +255,14 @@ function Home() {
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
-            Flawless execution.
+            Building Intelligent Digital Solutions
           </h2>
           <p className="mt-5 text-[#A8A8B8] text-lg">
-            Our premium approach creates software that feels as good as it looks.
-            Blending form and function at the highest level.
+            I combine AI, automation, and modern web development to create applications that save time, improve workflows, and deliver smarter user experiences.
           </p>
         </RevealOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-3 auto-rows-fr">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5 auto-rows-fr">
           {features.map((f, i) => (
             <RevealOnScroll key={f.title} delay={i * 0.1}>
               <GlassCard className="p-8 h-full flex flex-col items-center text-center group cursor-default">
@@ -303,23 +314,39 @@ function Home() {
           </p>
         </RevealOnScroll>
 
-        <RevealOnScroll>
-          <GlassCard className="p-8 sm:p-12 text-center">
-            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#8B5CF6] to-[#22D3EE] text-white mb-6">
-              <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-              </svg>
-            </div>
-            <h3 className="font-display text-3xl font-bold text-white tracking-tight">FAST - NUCES</h3>
-            <p className="mt-3 text-[#A8A8B8] text-lg">
-              Fast University of Science &amp; Technology<br/>
-              <span className="text-sm">Computer Science Engineering</span>
-            </p>
-            <p className="mt-4 text-white/70">
-              Building a strong foundation in software development, algorithms, and system design principles.
-            </p>
-          </GlassCard>
-        </RevealOnScroll>
+        <div className="grid gap-6 md:grid-cols-2">
+          <RevealOnScroll delay={0}>
+            <GlassCard className="p-8 sm:p-12 text-center h-full">
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl mb-6">
+                <img src="/images/fastlogo.png" alt="FAST Logo" className="h-16 w-16 object-contain" />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-white tracking-tight">FAST - NUCES</h3>
+              <p className="mt-3 text-[#A8A8B8] text-lg font-semibold">
+                Master of Science in Computer Science
+              </p>
+              <p className="mt-2 text-white/70 text-sm">
+                National University of Computer and Emerging Sciences<br/>
+                Lahore Campus
+              </p>
+            </GlassCard>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.1}>
+            <GlassCard className="p-8 sm:p-12 text-center h-full">
+              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl mb-6">
+                <img src="/images/uollogo.png" alt="UOL Logo" className="h-16 w-16 object-contain" />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-white tracking-tight">University of Lahore</h3>
+              <p className="mt-3 text-[#A8A8B8] text-lg font-semibold">
+                Bachelor in Software Engineering
+              </p>
+              <p className="mt-2 text-white/70 text-sm">
+                Computer Software Engineering<br/>
+                Lahore
+              </p>
+            </GlassCard>
+          </RevealOnScroll>
+        </div>
       </section>
 
       {/* ─── Awards & Certifications Section ─── */}
@@ -333,47 +360,45 @@ function Home() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-4 auto-rows-fr">
-          <RevealOnScroll delay={0}>
-            <div className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-              <Img
-                src="/images/corectaward.png"
-                alt="Award 1"
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.1}>
-            <div className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-              <Img
-                src="/images/corraward2.png"
-                alt="Award 2"
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.2}>
-            <div className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-              <Img
-                src="/images/cert-1.png"
-                alt="Certificate 1"
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.3}>
-            <div className="glow-panel flex aspect-square items-center justify-center overflow-hidden rounded-2xl p-4">
-              <Img
-                src="/images/cert8.jpg"
-                alt="Certificate 2"
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </div>
-          </RevealOnScroll>
+        <div className="w-full overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.01)" }}>
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+            {[
+              "/images/corectaward.png",
+              "/images/corraward2.png",
+              "/images/corraward3.png",
+              "/images/corraward4.png",
+              "/images/cert-1.png",
+              "/images/cert-2.png",
+              "/images/cert-3.png",
+              "/images/cert4.png",
+              "/images/cert5.jpg",
+              "/images/cert6.png",
+              "/images/cert7.jpg",
+              "/images/cert8.jpg",
+              "/images/award4.png",
+              "/images/award5.png",
+              "/images/award6.png",
+              "/images/award8.png",
+              "/images/award9.png",
+              "/images/award12.png",
+              "/images/award13.png",
+              "/images/award14.png",
+              "/images/cer13.png",
+              "/images/cer14.jpg",
+              "/images/cer15.jpg",
+              "/images/cer16.jpg",
+              "/images/cer17.jpg",
+            ].map((img, i) => (
+              <div key={i} className="mx-4 flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-xl glow-panel p-3">
+                <Img
+                  src={img}
+                  alt={`Award ${i + 1}`}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -422,35 +447,79 @@ function Home() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-3 auto-rows-fr">
+        <div className="grid gap-6 md:grid-cols-2 auto-rows-fr">
           {[
             {
-              title: "Web Development",
-              desc: "Modern, scalable web applications built with React, Next.js, and the latest technologies.",
-              icon: FaCode,
+              title: "AI & Generative AI",
+              icon: FaMicrochip,
+              skills: [
+                "LLM Applications | RAG Systems | AI Agents | AI Voice Agents",
+                "LangChain | LlamaIndex | Vector Databases",
+                "Prompt Engineering | Function Calling | Multi-Agent Systems",
+                "Fine-Tuning (LoRA, QLoRA, PEFT)",
+                "OpenAI GPT-4o | Claude 3.5 | Gemini | LLaMA | Mistral",
+                "Hallucination Detection & AI Evaluation"
+              ],
+              desc: "Building intelligent AI solutions that transform business challenges into competitive advantages."
             },
             {
-              title: "UI/UX Design",
-              desc: "Beautiful, intuitive interfaces designed with attention to detail and user experience.",
-              icon: FaPalette,
+              title: "Data Science & Machine Learning",
+              icon: FaChartLine,
+              skills: [
+                "Python (NumPy, Pandas, scikit-learn, TensorFlow, PyTorch)",
+                "ML: SVM, Random Forest, Gradient Boosting, Regression",
+                "Deep Learning: CNN, RNN/LSTM, Transformers",
+                "NLP: Text Classification, Sentiment Analysis",
+                "Data Mining, Feature Engineering & Predictive Modeling",
+                "AI-driven analytics & automation systems"
+              ],
+              desc: "Turning complex data into actionable intelligence through advanced analytics and machine learning."
             },
             {
-              title: "Full Stack Solutions",
-              desc: "End-to-end development from frontend to backend infrastructure and deployment.",
-              icon: FaRocket,
+              title: "Full-Stack & Cloud",
+              icon: FaLayerGroup,
+              skills: [
+                "React.js | Angular | TypeScript",
+                "ASP.NET Core | C# | Node.js | Python",
+                "REST APIs | Microservices | Secure Authentication",
+                "SQL, NoSQL, Neo4j | ETL Pipelines",
+                "AWS | Azure | GCP | Docker | CI/CD"
+              ],
+              desc: "Delivered 100+ projects across AI, SaaS, automation, and enterprise systems for global clients."
+            },
+            {
+              title: "Leadership & Delivery",
+              icon: FaUsers,
+              skills: [
+                "Agile Project Management",
+                "Product Roadmaps & Technical Strategy",
+                "Remote Team Coordination",
+                "System Audits & Performance Optimization",
+                "Clean, scalable, business-aligned architecture"
+              ],
+              desc: "Building intelligent, secure, and scalable systems that drive measurable growth — not just writing code."
             },
           ].map((service, i) => (
             <RevealOnScroll key={service.title} delay={i * 0.1}>
-              <GlassCard className="p-8 h-full flex flex-col items-center text-center group cursor-default hover:border-white/30 transition-colors">
+              <GlassCard className="p-8 h-full flex flex-col group cursor-default hover:border-white/30 transition-colors">
                 <div className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 ${
                   i === 0 ? "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-300" :
-                  i === 1 ? "bg-gradient-to-br from-pink-500/30 to-rose-500/20 text-pink-300" :
+                  i === 1 ? "bg-gradient-to-br from-cyan-500/30 to-sky-500/20 text-cyan-300" :
+                  i === 2 ? "bg-gradient-to-br from-pink-500/30 to-rose-500/20 text-pink-300" :
                   "bg-gradient-to-br from-orange-500/30 to-amber-500/20 text-orange-300"
                 }`}>
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white tracking-tight">{service.title}</h3>
-                <p className="mt-3 text-[#A8A8B8] leading-relaxed flex-1 text-justify">{service.desc}</p>
+                <ul className="mt-4 space-y-2 flex-1 text-sm text-[#A8A8B8] text-left">
+                  {service.skills.map((skill, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="mr-2 text-violet-400">•</span>
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 text-[#A8A8B8] text-sm leading-relaxed text-left italic">{service.desc}</p>
               </GlassCard>
             </RevealOnScroll>
           ))}
@@ -461,7 +530,7 @@ function Home() {
       <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
-            Recent Work
+            Moments That Matter
           </h2>
           <p className="mt-5 text-[#A8A8B8] text-lg">
             Highlights from our latest projects and collaborations.
@@ -688,7 +757,7 @@ function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-wide text-white/50">Email</p>
-                    <p className="text-white font-semibold">owais@zaisystems.com</p>
+                    <p className="text-white font-semibold">owais.ahmad60@gmail.com</p>
                   </div>
                 </div>
               </GlassCard>
