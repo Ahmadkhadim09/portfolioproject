@@ -398,6 +398,28 @@
 }
 
 .hero-portrait-accent {
+  /* placeholder for hero accent */
+}
+
+/* Hide Lovable injected UI (dev widget) — override if plugin injects different selectors */
+#lovable-root,
+.lovable,
+.lovable-badge,
+.lovable-widget,
+.lovable-toggle,
+[data-lovely],
+[data-lovable],
+iframe[src*="lovable"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Fallback: hide any element containing 'lovable' in class or id */
+[class*="lovable"],
+[id*="lovable"] {
+  display: none !important;
+}
   position: absolute;
   inset: 24% 12% auto auto;
   width: 55%;

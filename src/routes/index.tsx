@@ -327,7 +327,7 @@ function Home() {
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll delay={0}>
             <GlassCard className="p-8 sm:p-12 text-center h-full">
-              <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl mb-6 bg-white/10 p-3">
+              <div className="flex h-20 w-20 mx-auto items-center justify-center rounded-2xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden mb-6 transition-transform duration-300">
                 <img src="/images/fastlogo.png" alt="FAST Logo" className="h-full w-full object-contain" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white tracking-tight">FAST - NUCES</h3>
@@ -343,7 +343,7 @@ function Home() {
 
           <RevealOnScroll delay={0.1}>
             <GlassCard className="p-8 sm:p-12 text-center h-full">
-              <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl mb-6 bg-white/10 p-3">
+              <div className="flex h-20 w-20 mx-auto items-center justify-center rounded-2xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden mb-6 transition-transform duration-300">
                 <img src="/images/uollogo.png" alt="UOL Logo" className="h-full w-full object-contain" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white tracking-tight">University of Lahore</h3>

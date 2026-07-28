@@ -15,26 +15,36 @@ export const Route = createFileRoute("/certificates")({
 });
 
 function Certificates() {
-  const certificateImages = [
-    "/images/certificates/cer13.png",
-    "/images/certificates/cer4.png",
-    "/images/certificates/cert-1.png",
-    "/images/certificates/cert-2.png",
-    "/images/certificates/cert-3.png",
-    "/images/certificates/cert1.png",
-    "/images/certificates/cert10.png",
-    "/images/certificates/cert11.png",
-    "/images/certificates/cert12.png",
-    "/images/certificates/cert13.png",
-    "/images/certificates/cert2.png",
-    "/images/certificates/cert3.png",
-    "/images/certificates/cert4.png",
-    "/images/certificates/cert5.png",
-    "/images/certificates/cert6.png",
-    "/images/certificates/cert7.png",
-    "/images/certificates/cert8.jpg",
-    "/images/certificates/cert8.png",
-  ].map((src, index) => ({
+  // New certificates to prepend (recently added)
+  const newStart = [
+    "/images/certificates/13.png",
+    "/images/certificates/14.png",
+    "/images/certificates/15.png",
+  ];
+
+  // Use the actual files from public/images/certificates (existing uploads)
+  const certificateSources = [
+    "/images/certificates/0.png",
+    "/images/certificates/1.png",
+    "/images/certificates/2.png",
+    "/images/certificates/3.png",
+    "/images/certificates/4.png",
+    "/images/certificates/5.png",
+    "/images/certificates/7.png",
+    "/images/certificates/8.png",
+    "/images/certificates/9.png",
+    "/images/certificates/10.png",
+    "/images/certificates/11.png",
+    "/images/certificates/12.png",
+  ];
+
+  // Prepend newStart items while avoiding duplicates
+  const displayedSources = [
+    ...newStart,
+    ...certificateSources.filter((s) => !newStart.includes(s)),
+  ];
+
+  const certificateImages = displayedSources.map((src, index) => ({
     src,
     alt: `Certificate ${index + 1}`,
     title: `Certificate ${index + 1}`,
@@ -78,23 +88,28 @@ function Certificates() {
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {certificateImages.map((certificate) => (
-              <article
+              <a
                 key={certificate.src}
-                className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-lg shadow-black/20"
+                href={certificate.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                <div className="bg-black/20 p-3">
-                  <Img
-                    src={certificate.src}
-                    alt={certificate.alt}
-                    className="h-[320px] w-full rounded-2xl object-contain"
-                    placeholderLabel={certificate.title}
-                  />
-                </div>
-                <div className="space-y-2 p-5 text-left">
-                  <h3 className="font-display text-xl font-semibold text-white">{certificate.title}</h3>
-                  <p className="text-sm text-white/70">{certificate.subtitle}</p>
-                </div>
-              </article>
+                <article className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-lg shadow-black/20 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-transform duration-200">
+                  <div className="bg-black/20 p-3">
+                    <Img
+                      src={certificate.src}
+                      alt={certificate.alt}
+                      className="h-[320px] w-full rounded-2xl object-contain"
+                      placeholderLabel={certificate.title}
+                    />
+                  </div>
+                  <div className="space-y-2 p-5 text-left">
+                    <h3 className="font-display text-xl font-semibold text-white">{certificate.title}</h3>
+                    <p className="text-sm text-white/70">{certificate.subtitle}</p>
+                  </div>
+                </article>
+              </a>
             ))}
           </div>
         </div>
