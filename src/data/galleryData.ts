@@ -1,358 +1,231 @@
-export type GalleryData = { src: string; title: string; description: string; alt: string; };
+export type GalleryData = { src: string; title: string; description: string; alt: string; location: string };
 
-export const galleryData: GalleryData[] = [
-  {
-    "src": "/images/gallery/00000018-PHOTO-2026-07-25-17-58-55.jpg",
-    "title": "Modern Living",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 0"
-  },
-  {
-    "src": "/images/gallery/00000019-PHOTO-2026-07-25-17-58-55.jpg",
-    "title": "Urban Luxury",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 1"
-  },
-  {
-    "src": "/images/gallery/00000020-PHOTO-2026-07-25-17-58-55.jpg",
-    "title": "Elegant Design",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 2"
-  },
-  {
-    "src": "/images/gallery/00000021-PHOTO-2026-07-25-17-58-56.jpg",
-    "title": "Creative Space",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 3"
-  },
-  {
-    "src": "/images/gallery/00000022-PHOTO-2026-07-25-17-58-56.jpg",
-    "title": "Timeless Beauty",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 4"
-  },
-  {
-    "src": "/images/gallery/00000023-PHOTO-2026-07-25-17-58-57.jpg",
-    "title": "Coastal Escape",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 5"
-  },
-  {
-    "src": "/images/gallery/00000024-PHOTO-2026-07-25-17-58-57.jpg",
-    "title": "Infinite Vision",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 6"
-  },
-  {
-    "src": "/images/gallery/00000025-PHOTO-2026-07-25-17-58-58.jpg",
-    "title": "Dynamic Form",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 7"
-  },
-  {
-    "src": "/images/gallery/00000026-PHOTO-2026-07-25-17-58-58.jpg",
-    "title": "Abstract Concept",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 8"
-  },
-  {
-    "src": "/images/gallery/00000027-PHOTO-2026-07-25-17-58-58.jpg",
-    "title": "Pure Elegance",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 9"
-  },
-  {
-    "src": "/images/gallery/00000028-PHOTO-2026-07-25-17-58-59.jpg",
-    "title": "Modern Living",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 10"
-  },
-  {
-    "src": "/images/gallery/00000029-PHOTO-2026-07-25-17-58-59.jpg",
-    "title": "Urban Luxury",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 11"
-  },
-  {
-    "src": "/images/gallery/00000030-PHOTO-2026-07-25-17-58-59.jpg",
-    "title": "Elegant Design",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 12"
-  },
-  {
-    "src": "/images/gallery/00000031-PHOTO-2026-07-25-17-59-00.jpg",
-    "title": "Creative Space",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 13"
-  },
-  {
-    "src": "/images/gallery/00000032-PHOTO-2026-07-25-17-59-01.jpg",
-    "title": "Timeless Beauty",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 14"
-  },
-  {
-    "src": "/images/gallery/00000033-PHOTO-2026-07-25-17-59-01.jpg",
-    "title": "Coastal Escape",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 15"
-  },
-  {
-    "src": "/images/gallery/00000034-PHOTO-2026-07-25-17-59-02.jpg",
-    "title": "Infinite Vision",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 16"
-  },
-  {
-    "src": "/images/gallery/00000035-PHOTO-2026-07-25-17-59-02.jpg",
-    "title": "Dynamic Form",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 17"
-  },
-  {
-    "src": "/images/gallery/00000036-PHOTO-2026-07-25-17-59-04.jpg",
-    "title": "Abstract Concept",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 18"
-  },
-  {
-    "src": "/images/gallery/00000037-PHOTO-2026-07-25-17-59-06.jpg",
-    "title": "Pure Elegance",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 19"
-  },
-  {
-    "src": "/images/gallery/00000039-PHOTO-2026-07-25-18-04-50.jpg",
-    "title": "Modern Living",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 20"
-  },
-  {
-    "src": "/images/gallery/00000041-PHOTO-2026-07-25-18-04-51.jpg",
-    "title": "Urban Luxury",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 21"
-  },
-  {
-    "src": "/images/gallery/00000042-PHOTO-2026-07-25-18-04-51.jpg",
-    "title": "Elegant Design",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 22"
-  },
-  {
-    "src": "/images/gallery/00000043-PHOTO-2026-07-25-18-04-52.jpg",
-    "title": "Creative Space",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 23"
-  },
-  {
-    "src": "/images/gallery/00000044-PHOTO-2026-07-25-18-04-52.jpg",
-    "title": "Timeless Beauty",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 24"
-  },
-  {
-    "src": "/images/gallery/00000045-PHOTO-2026-07-25-18-04-52.jpg",
-    "title": "Coastal Escape",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 25"
-  },
-  {
-    "src": "/images/gallery/00000047-PHOTO-2026-07-25-18-04-53.jpg",
-    "title": "Infinite Vision",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 26"
-  },
-  {
-    "src": "/images/gallery/00000048-PHOTO-2026-07-25-18-04-53.jpg",
-    "title": "Dynamic Form",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 27"
-  },
-  {
-    "src": "/images/gallery/00000049-PHOTO-2026-07-25-18-04-54.jpg",
-    "title": "Abstract Concept",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 28"
-  },
-  {
-    "src": "/images/gallery/00000052-PHOTO-2026-07-25-18-04-55.jpg",
-    "title": "Pure Elegance",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 29"
-  },
-  {
-    "src": "/images/gallery/00000054-PHOTO-2026-07-25-18-04-55.jpg",
-    "title": "Modern Living",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 30"
-  },
-  {
-    "src": "/images/gallery/00000056-PHOTO-2026-07-25-18-04-56.jpg",
-    "title": "Urban Luxury",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 31"
-  },
-  {
-    "src": "/images/gallery/00000057-PHOTO-2026-07-25-18-04-56.jpg",
-    "title": "Elegant Design",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 32"
-  },
-  {
-    "src": "/images/gallery/00000058-PHOTO-2026-07-25-18-04-57.jpg",
-    "title": "Creative Space",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 33"
-  },
-  {
-    "src": "/images/gallery/00000059-PHOTO-2026-07-25-18-04-57.jpg",
-    "title": "Timeless Beauty",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 34"
-  },
-  {
-    "src": "/images/gallery/00000060-PHOTO-2026-07-25-18-04-57.jpg",
-    "title": "Coastal Escape",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 35"
-  },
-  {
-    "src": "/images/gallery/00000061-PHOTO-2026-07-25-18-04-58.jpg",
-    "title": "Infinite Vision",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 36"
-  },
-  {
-    "src": "/images/gallery/00000062-PHOTO-2026-07-25-18-04-58.jpg",
-    "title": "Dynamic Form",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 37"
-  },
-  {
-    "src": "/images/gallery/00000063-PHOTO-2026-07-25-18-04-58.jpg",
-    "title": "Abstract Concept",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 38"
-  },
-  {
-    "src": "/images/gallery/00000064-PHOTO-2026-07-25-18-04-59.jpg",
-    "title": "Pure Elegance",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 39"
-  },
-  {
-    "src": "/images/gallery/00000065-PHOTO-2026-07-25-18-04-59.jpg",
-    "title": "Modern Living",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 40"
-  },
-  {
-    "src": "/images/gallery/00000066-PHOTO-2026-07-25-18-04-59.jpg",
-    "title": "Urban Luxury",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 41"
-  },
-  {
-    "src": "/images/gallery/00000067-PHOTO-2026-07-25-18-05-00.jpg",
-    "title": "Elegant Design",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 42"
-  },
-  {
-    "src": "/images/gallery/00000068-PHOTO-2026-07-25-18-05-00.jpg",
-    "title": "Creative Space",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 43"
-  },
-  {
-    "src": "/images/gallery/00000069-PHOTO-2026-07-25-18-05-00.jpg",
-    "title": "Timeless Beauty",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 44"
-  },
-  {
-    "src": "/images/gallery/00000071-PHOTO-2026-07-25-18-05-01.jpg",
-    "title": "Coastal Escape",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 45"
-  },
-  {
-    "src": "/images/gallery/00000073-PHOTO-2026-07-25-18-05-02.jpg",
-    "title": "Infinite Vision",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 46"
-  },
-  {
-    "src": "/images/gallery/00000076-PHOTO-2026-07-25-18-05-02.jpg",
-    "title": "Dynamic Form",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 47"
-  },
-  {
-    "src": "/images/gallery/00000078-PHOTO-2026-07-25-18-05-03.jpg",
-    "title": "Abstract Concept",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 48"
-  },
-  {
-    "src": "/images/gallery/00000080-PHOTO-2026-07-25-18-05-05.jpg",
-    "title": "Pure Elegance",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 49"
-  },
-  {
-    "src": "/images/gallery/00000083-PHOTO-2026-07-25-18-05-06.jpg",
-    "title": "Modern Living",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 50"
-  },
-  {
-    "src": "/images/gallery/00000084-PHOTO-2026-07-25-18-05-06.jpg",
-    "title": "Urban Luxury",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 51"
-  },
-  {
-    "src": "/images/gallery/00000088-PHOTO-2026-07-25-18-05-08.jpg",
-    "title": "Elegant Design",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 52"
-  },
-  {
-    "src": "/images/gallery/00000090-PHOTO-2026-07-25-18-05-08.jpg",
-    "title": "Creative Space",
-    "description": "Bold and visionary form",
-    "alt": "Gallery capture 53"
-  },
-  {
-    "src": "/images/gallery/00000092-PHOTO-2026-07-25-18-05-09.jpg",
-    "title": "Timeless Beauty",
-    "description": "Exquisite modern aesthetic",
-    "alt": "Gallery capture 54"
-  },
-  {
-    "src": "/images/gallery/00000095-PHOTO-2026-07-25-18-05-11.jpg",
-    "title": "Coastal Escape",
-    "description": "Premium architectural design",
-    "alt": "Gallery capture 55"
-  },
-  {
-    "src": "/images/gallery/00000097-PHOTO-2026-07-25-18-05-11.jpg",
-    "title": "Infinite Vision",
-    "description": "Captivating visual experience",
-    "alt": "Gallery capture 56"
-  },
-  {
-    "src": "/images/gallery/00000099-PHOTO-2026-07-25-18-05-12.jpg",
-    "title": "Dynamic Form",
-    "description": "Harmony in structure",
-    "alt": "Gallery capture 57"
-  },
-  {
-    "src": "/images/gallery/00000102-PHOTO-2026-07-25-18-05-13.jpg",
-    "title": "Abstract Concept",
-    "description": "Refined contemporary style",
-    "alt": "Gallery capture 58"
-  }
+const filenames = [
+  "00000018-PHOTO-2026-07-25-17-58-55.jpg",
+  "00000019-PHOTO-2026-07-25-17-58-55.jpg",
+  "00000020-PHOTO-2026-07-25-17-58-55.jpg",
+  "00000021-PHOTO-2026-07-25-17-58-56.jpg",
+  "00000022-PHOTO-2026-07-25-17-58-56.jpg",
+  "00000023-PHOTO-2026-07-25-17-58-57.jpg",
+  // removed: 00000024 per request
+  "00000025-PHOTO-2026-07-25-17-58-58.jpg",
+  "00000026-PHOTO-2026-07-25-17-58-58.jpg",
+  "00000027-PHOTO-2026-07-25-17-58-58.jpg",
+  "00000028-PHOTO-2026-07-25-17-58-59.jpg",
+  "00000029-PHOTO-2026-07-25-17-58-59.jpg",
+  "00000032-PHOTO-2026-07-25-17-59-01.jpg",
+  "00000039-PHOTO-2026-07-25-18-04-50.jpg",
+  "00000041-PHOTO-2026-07-25-18-04-51.jpg",
+  "00000042-PHOTO-2026-07-25-18-04-51.jpg",
+  "00000043-PHOTO-2026-07-25-18-04-52.jpg",
+  "00000044-PHOTO-2026-07-25-18-04-52.jpg",
+  "00000045-PHOTO-2026-07-25-18-04-52.jpg",
+  "00000047-PHOTO-2026-07-25-18-04-53.jpg",
+  "00000048-PHOTO-2026-07-25-18-04-53.jpg",
+  "00000049-PHOTO-2026-07-25-18-04-54.jpg",
+  "00000052-PHOTO-2026-07-25-18-04-55.jpg",
+  "00000054-PHOTO-2026-07-25-18-04-55.jpg",
+  "00000056-PHOTO-2026-07-25-18-04-56.jpg",
+  "00000057-PHOTO-2026-07-25-18-04-56.jpg",
+  "00000058-PHOTO-2026-07-25-18-04-57.jpg",
+  "00000059-PHOTO-2026-07-25-18-04-57.jpg",
+  "00000060-PHOTO-2026-07-25-18-04-57.jpg",
+  // removed: 00000061 per request
+  "00000062-PHOTO-2026-07-25-18-04-58.jpg",
+  "00000064-PHOTO-2026-07-25-18-04-59.jpg",
+  "00000065-PHOTO-2026-07-25-18-04-59.jpg",
+  "00000066-PHOTO-2026-07-25-18-04-59.jpg",
+  "00000067-PHOTO-2026-07-25-18-05-00.jpg",
+  "00000068-PHOTO-2026-07-25-18-05-00.jpg",
+  "00000071-PHOTO-2026-07-25-18-05-01.jpg",
+  "00000073-PHOTO-2026-07-25-18-05-02.jpg",
+  // removed: 00000076, 00000078 per request
+  "00000083-PHOTO-2026-07-25-18-05-06.jpg",
+  "00000084-PHOTO-2026-07-25-18-05-06.jpg",
+  "00000088-PHOTO-2026-07-25-18-05-08.jpg",
+  "00000090-PHOTO-2026-07-25-18-05-08.jpg",
+  "00000092-PHOTO-2026-07-25-18-05-09.jpg",
+  "00000095-PHOTO-2026-07-25-18-05-11.jpg",
+  "00000096-PHOTO-2026-07-25-18-05-11.jpg",
+  "00000097-PHOTO-2026-07-25-18-05-11.jpg",
+  "00000099-PHOTO-2026-07-25-18-05-12.jpg",
+  "00000102-PHOTO-2026-07-25-18-05-13.jpg",
+  "00000103-PHOTO-2026-07-25-18-05-13.jpg",
+  // removed: 00000104 per request
+  "00000106-PHOTO-2026-07-25-18-05-14.jpg",
+  "00000108-PHOTO-2026-07-25-18-05-15.jpg",
+  "00000109-PHOTO-2026-07-25-18-05-15.jpg",
+  "00000113-PHOTO-2026-07-25-18-05-17.jpg",
+  "00000114-PHOTO-2026-07-25-18-05-17.jpg",
+  "00000115-PHOTO-2026-07-25-18-05-17.jpg",
+  "00000116-PHOTO-2026-07-25-18-05-18.jpg",
+  "00000118-PHOTO-2026-07-25-18-05-18.jpg",
+  "00000151-PHOTO-2026-07-25-18-10-53.jpg",
+  "00000152-PHOTO-2026-07-25-18-10-53.jpg",
+  "00000156-PHOTO-2026-07-25-18-10-55.jpg",
+  "00000169-PHOTO-2026-07-25-18-10-59.jpg",
+  "00000170-PHOTO-2026-07-25-18-10-59.jpg",
+  "00000171-PHOTO-2026-07-25-18-10-59.jpg",
+  "00000172-PHOTO-2026-07-25-18-11-00.jpg",
+  "00000173-PHOTO-2026-07-25-18-11-00.jpg",
+  "00000179-PHOTO-2026-07-25-18-11-02.jpg",
+  "00000181-PHOTO-2026-07-25-18-11-03.jpg",
+  "00000183-PHOTO-2026-07-25-18-11-03.jpg",
+  "00000184-PHOTO-2026-07-25-18-11-04.jpg",
+  "00000185-PHOTO-2026-07-25-18-11-04.jpg",
+  "00000186-PHOTO-2026-07-25-18-11-05.jpg",
+  "00000187-PHOTO-2026-07-25-18-11-05.jpg",
+  "00000188-PHOTO-2026-07-25-18-11-05.jpg",
+  "00000189-PHOTO-2026-07-25-18-11-06.jpg",
+  "00000190-PHOTO-2026-07-25-18-11-06.jpg",
+  "00000191-PHOTO-2026-07-25-18-11-06.jpg",
+  "00000192-PHOTO-2026-07-25-18-11-07.jpg",
+  "00000193-PHOTO-2026-07-25-18-11-07.jpg",
+  "00000217-PHOTO-2026-07-25-18-16-17.jpg",
+  "00000219-PHOTO-2026-07-25-18-16-17.jpg",
+  "00000228-PHOTO-2026-07-25-18-16-20.jpg",
+  "00000236-PHOTO-2026-07-25-18-16-23.jpg",
+  "00000237-PHOTO-2026-07-25-18-16-24.jpg",
+  "00000239-PHOTO-2026-07-25-18-16-24.jpg",
+  "00000243-PHOTO-2026-07-25-18-16-25.jpg",
+  "00000247-PHOTO-2026-07-25-18-16-27.jpg",
+  "00000248-PHOTO-2026-07-25-18-16-27.jpg",
+  "00000249-PHOTO-2026-07-25-18-16-28.jpg",
+  "00000250-PHOTO-2026-07-25-18-16-28.jpg",
+  "00000253-PHOTO-2026-07-25-18-16-29.jpg",
+  "00000254-PHOTO-2026-07-25-18-16-29.jpg",
+  "00000255-PHOTO-2026-07-25-18-16-29.jpg",
+  "00000256-PHOTO-2026-07-25-18-16-30.jpg",
+  "00000259-PHOTO-2026-07-25-18-16-31.jpg",
+  "00000262-PHOTO-2026-07-25-18-16-32.jpg",
+  "00000263-PHOTO-2026-07-25-18-16-32.jpg",
+  "00000264-PHOTO-2026-07-25-18-16-33.jpg",
+  "00000266-PHOTO-2026-07-25-18-16-33.jpg",
+  "00000268-PHOTO-2026-07-25-18-16-34.jpg",
+  "00000269-PHOTO-2026-07-25-18-16-34.jpg",
+  "00000270-PHOTO-2026-07-25-18-16-34.jpg",
+  "00000271-PHOTO-2026-07-25-18-16-35.jpg",
+  "00000273-PHOTO-2026-07-25-18-16-35.jpg",
+  "00000274-PHOTO-2026-07-25-18-16-36.jpg",
+  "00000277-PHOTO-2026-07-25-18-16-37.jpg",
+  "00000278-PHOTO-2026-07-25-18-16-37.jpg",
+  "00000279-PHOTO-2026-07-25-18-16-37.jpg",
+  "00000282-PHOTO-2026-07-25-18-16-38.jpg",
+  "00000283-PHOTO-2026-07-25-18-16-39.jpg",
+  "00000284-PHOTO-2026-07-25-18-16-39.jpg",
+  "00000286-PHOTO-2026-07-25-18-25-03.jpg"
 ];
+
+const keywordTitles = [
+  "ucp",
+  "kips",
+  "jobfair",
+  "zaisystems",
+  "rippah",
+  "lahore",
+  "garisson university",
+  "lahore garrison university",
+  "world startup",
+  "rippah",
+  "university of lahore",
+  "devsinc",
+  "jobfair",
+  "podcast",
+  "podcast",
+  "arshad niaz",
+  "study center",
+  "digital growth",
+  "award show",
+  "parliment",
+  "parliment",
+  "ibex",
+  "pny training",
+  "ucp",
+  "jobfair",
+  "tkxl",
+  "bnu",
+  "ucp",
+  "netsol",
+  "umt",
+  "impulse",
+  "hsm",
+  "ceo meetup",
+  "fast",
+  "invozone",
+  "invozone",
+  "qas health",
+  "ceo meetup",
+  "award show 3",
+  "nypc award",
+  "cermoney",
+  "digital growth",
+  "zai systems",
+  "hello friday",
+  "rippah",
+  "rippah",
+  "nastp",
+  "pny training",
+  "alkhidmat markaz",
+  "main office",
+];
+
+const keywordDisplayMap: Record<string, string> = {
+  ucp: "UCP",
+  kips: "KIPS",
+  jobfair: "Job Fair",
+  zaisystems: "Zai Systems",
+  rippah: "Rippah",
+  lahore: "Lahore",
+  "garisson university": "Garrison University",
+  "lahore garrison university": "Lahore Garrison University",
+  "world startup": "World Startup",
+  "university of lahore": "University of Lahore",
+  devsinc: "DevsInc",
+  podcast: "Podcast",
+  "arshad niaz": "Arshad Niaz",
+  "study center": "Study Center",
+  "digital growth": "Digital Growth",
+  "award show": "Award Show",
+  parliment: "Parliament",
+  ibex: "IBEX",
+  "pny training": "PNY Training",
+  tkxl: "TKXL",
+  bnu: "BNU",
+  netsol: "NetSol",
+  umt: "UMT",
+  impulse: "Impulse",
+  hsm: "HSM",
+  "ceo meetup": "CEO Meetup",
+  fast: "FAST",
+  invozone: "InvoZone",
+  "qas health": "QAS Health",
+  "award show 3": "Award Show 3",
+  "nypc award": "NYPC Award",
+  cermoney: "Ceremony",
+  "zai systems": "Zai Systems",
+  "hello friday": "Hello Friday",
+  nastp: "NASTP",
+  "alkhidmat markaz": "Alkhidmat Markaz",
+  "main office": "Main Office",
+};
+
+const formatKeyword = (keyword: string) => {
+  if (keywordDisplayMap[keyword]) return keywordDisplayMap[keyword];
+  return keyword
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};
+
+export const galleryData: GalleryData[] = filenames.map((f, i) => {
+  const keyword = keywordTitles[i % keywordTitles.length];
+  const displayKeyword = formatKeyword(keyword);
+
+  return {
+    src: `/images/gallery/${f}`,
+    title: displayKeyword,
+    description: `A refined visual from the ${displayKeyword} collection.`,
+    alt: `${displayKeyword} photo ${i + 1}`,
+    location: displayKeyword,
+  };
+});

@@ -53,8 +53,18 @@ const features = [
 ];
 
 const technologies = [
-  { label: "React ecosystem", desc: "Next.js, Vite, and SPAs with edge-rendering.", icon: FaMicrochip, accentClass: "from-cyan-500/30 to-blue-500/20 text-cyan-400" },
-  { label: "Robust Backends", desc: "Node.js, Go, and scalable serverless architecture.", icon: FaLayerGroup, accentClass: "from-emerald-500/30 to-lime-500/20 text-emerald-400" },
+  {
+    label: "Enterprise Automation",
+    desc: "Streamlining internal operations with intelligent workflows, document processing, and AI-driven decision making.",
+    icon: FaLayerGroup,
+    accentClass: "from-cyan-500/30 to-blue-500/20 text-cyan-400",
+  },
+  {
+    label: "Maintenance & Scaling",
+    desc: "Providing continuous monitoring, updates, security improvements, and infrastructure scaling as your business grows.",
+    icon: FaMicrochip,
+    accentClass: "from-emerald-500/30 to-lime-500/20 text-emerald-400",
+  },
 ];
 
 const podcastVideos = [
@@ -317,8 +327,8 @@ function Home() {
         <div className="grid gap-6 md:grid-cols-2">
           <RevealOnScroll delay={0}>
             <GlassCard className="p-8 sm:p-12 text-center h-full">
-              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl mb-6">
-                <img src="/images/fastlogo.png" alt="FAST Logo" className="h-16 w-16 object-contain" />
+              <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl mb-6 bg-white/10 p-3">
+                <img src="/images/fastlogo.png" alt="FAST Logo" className="h-full w-full object-contain" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white tracking-tight">FAST - NUCES</h3>
               <p className="mt-3 text-[#A8A8B8] text-lg font-semibold">
@@ -333,8 +343,8 @@ function Home() {
 
           <RevealOnScroll delay={0.1}>
             <GlassCard className="p-8 sm:p-12 text-center h-full">
-              <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl mb-6">
-                <img src="/images/uollogo.png" alt="UOL Logo" className="h-16 w-16 object-contain" />
+              <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl mb-6 bg-white/10 p-3">
+                <img src="/images/uollogo.png" alt="UOL Logo" className="h-full w-full object-contain" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white tracking-tight">University of Lahore</h3>
               <p className="mt-3 text-[#A8A8B8] text-lg font-semibold">

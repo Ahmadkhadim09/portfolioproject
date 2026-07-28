@@ -32,7 +32,7 @@ function Podcast() {
     <>
       <section className="relative flex min-h-[60vh] items-center overflow-hidden rounded-3xl">
         <div className="absolute inset-0 z-0">
-          <Img src="/images/homecardimage1.jpg" alt="Podcast Background" className="h-full w-full object-cover object-center" />
+          <Img src="/images/mainpodcastimage.jpg" alt="Podcast Background" className="h-full w-full object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F19] via-[#0B0F19]/75 to-[#0B0F19]/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent" />
         </div>

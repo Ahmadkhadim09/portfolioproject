@@ -27,8 +27,8 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-4 group">
-          <span className="flex w-[56px] h-[56px] items-center justify-center rounded-full bg-white/[0.06] border border-white/10 p-[8px] transition-transform group-hover:scale-105 overflow-hidden">
-            <img src="/images/mainonelogo.webp" alt="ZAI Systems Logo" className="w-[52px] h-[52px] object-contain" />
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden transition-transform group-hover:scale-105">
+            <img src="/images/mainlogo.png" alt="Owais Ahmad Khan Logo" className="h-full w-full object-contain" />
           </span>
           <span className="font-display text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Owais Ahmad Khan</span>
         </Link>

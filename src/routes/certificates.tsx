@@ -14,23 +14,33 @@ export const Route = createFileRoute("/certificates")({
   component: Certificates,
 });
 
-const certs = [
-  { id: 1, file: "cert-1", ext: "png" },
-  { id: 2, file: "cert-2", ext: "png" },
-  { id: 3, file: "cert-3", ext: "png" },
-  { id: 4, file: "cert4", ext: "png" },
-  { id: 5, file: "cert5", ext: "jpg" },
-  { id: 6, file: "cert6", ext: "png" },
-  { id: 7, file: "cert7", ext: "jpg" },
-  { id: 8, file: "cert8", ext: "jpg" },
-  { id: 9, file: "cer4", ext: "png" },
-  { id: 10, file: "cer14", ext: "jpg" },
-  { id: 11, file: "cer15", ext: "jpg" },
-  { id: 12, file: "cer16", ext: "jpg" },
-  { id: 13, file: "cer17", ext: "jpg" },
-];
-
 function Certificates() {
+  const certificateImages = [
+    "/images/certificates/cer13.png",
+    "/images/certificates/cer4.png",
+    "/images/certificates/cert-1.png",
+    "/images/certificates/cert-2.png",
+    "/images/certificates/cert-3.png",
+    "/images/certificates/cert1.png",
+    "/images/certificates/cert10.png",
+    "/images/certificates/cert11.png",
+    "/images/certificates/cert12.png",
+    "/images/certificates/cert13.png",
+    "/images/certificates/cert2.png",
+    "/images/certificates/cert3.png",
+    "/images/certificates/cert4.png",
+    "/images/certificates/cert5.png",
+    "/images/certificates/cert6.png",
+    "/images/certificates/cert7.png",
+    "/images/certificates/cert8.jpg",
+    "/images/certificates/cert8.png",
+  ].map((src, index) => ({
+    src,
+    alt: `Certificate ${index + 1}`,
+    title: `Certificate ${index + 1}`,
+    subtitle: "Professional credential",
+  }));
+
   return (
     <>
       <section className="relative flex min-h-[55vh] items-center overflow-hidden rounded-3xl">
@@ -65,17 +75,26 @@ function Certificates() {
             </div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Certifications</h2>
           </div>
-          <div className="certs-grid mt-8">
-            {certs.map((cert) => (
-              <div key={cert.id} className="glow-panel flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl p-3">
-                <Img
-                  src={`/images/${cert.file}.${cert.ext}`}
-                  alt={`Certification ${cert.id}`}
-                  placeholderLabel={`Cert ${cert.id}`}
-                  loading="lazy"
-                  className="h-full w-full object-contain"
-                />
-              </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {certificateImages.map((certificate) => (
+              <article
+                key={certificate.src}
+                className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-lg shadow-black/20"
+              >
+                <div className="bg-black/20 p-3">
+                  <Img
+                    src={certificate.src}
+                    alt={certificate.alt}
+                    className="h-[320px] w-full rounded-2xl object-contain"
+                    placeholderLabel={certificate.title}
+                  />
+                </div>
+                <div className="space-y-2 p-5 text-left">
+                  <h3 className="font-display text-xl font-semibold text-white">{certificate.title}</h3>
+                  <p className="text-sm text-white/70">{certificate.subtitle}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>

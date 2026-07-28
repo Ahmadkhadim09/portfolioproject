@@ -23,7 +23,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  { icon: FaEnvelope, label: "Email", value: "owais@zaisystems.com", href: "mailto:owais@zaisystems.com", accentClass: "bg-gradient-to-br from-fuchsia-500/25 to-violet-500/15 text-fuchsia-200" },
+  { icon: FaEnvelope, label: "Email", value: "owais.ahmad60@gmail.com", href: "mailto:owais.ahmad60@gmail.com", accentClass: "bg-gradient-to-br from-fuchsia-500/25 to-violet-500/15 text-fuchsia-200" },
   { icon: FaPhone, label: "Phone", value: "Available on request", href: "#", accentClass: "bg-gradient-to-br from-cyan-500/25 to-sky-500/15 text-cyan-200" },
   { icon: FaGlobe, label: "Website", value: "zaisystems.com", href: "https://zaisystems.com", accentClass: "bg-gradient-to-br from-emerald-500/25 to-lime-500/15 text-emerald-200" },
   { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/owaisahmadkhan", href: "https://linkedin.com/in/owaisahmadkhan", accentClass: "bg-gradient-to-br from-indigo-500/25 to-blue-500/15 text-indigo-200" },
@@ -120,7 +120,7 @@ function Contact() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Img
-            src="/images/aboutimage2.jpeg"
+            src="/images/conatctmainimage.jpg"
             alt="Portrait of Owais Ahmad Khan"
             className="h-full w-full object-cover object-center"
           />
@@ -153,24 +153,26 @@ function Contact() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.2}>
-            <GlassCard className="p-4 !rounded-[2rem]">
-              <div className="overflow-hidden rounded-[1.5rem]">
-                <Img
-                  src="/images/aboutimage2.jpeg"
-                  alt="Face portrait of Owais Ahmad Khan"
-                  className="h-[420px] w-full object-cover object-center"
-                />
-              </div>
-              <div className="mt-4 flex items-center justify-between gap-4 px-2">
-                <div>
-                  <p className="text-sm font-semibold text-white">Open for collaboration</p>
-                  <p className="text-sm text-white/50">Leadership, consulting, speaking, and digital growth.</p>
+            <div role="button" tabIndex={0} className="group block w-full cursor-pointer" aria-label="Contact Owais Ahmad Khan">
+              <GlassCard className="p-4 !rounded-[2rem] transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl h-full">
+                <div className="overflow-hidden rounded-[1.5rem]">
+                  <Img
+                    src="/images/conatctmainimage.jpg"
+                    alt="Face portrait of Owais Ahmad Khan"
+                    className="h-[420px] w-full object-cover object-center"
+                  />
                 </div>
-                <span className="rounded-full bg-green-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-green-400">
-                  Available
-                </span>
-              </div>
-            </GlassCard>
+                <div className="mt-4 flex items-center justify-between gap-4 px-2">
+                  <div>
+                    <p className="text-sm font-semibold text-white">Open for collaboration</p>
+                    <p className="text-sm text-white/50">Leadership, consulting, speaking, and digital growth.</p>
+                  </div>
+                  <span className="rounded-full bg-green-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-green-400">
+                    Available
+                  </span>
+                </div>
+              </GlassCard>
+            </div>
           </RevealOnScroll>
         </div>
       </section>

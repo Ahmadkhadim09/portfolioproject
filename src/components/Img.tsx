@@ -4,6 +4,8 @@ type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   src: string;
   /** Text shown inside the colored placeholder if the image is missing. */
   placeholderLabel?: string;
+  /** Called when the image fails to load. */
+  onBroken?: () => void;
 };
 
 /**
@@ -50,7 +52,10 @@ export function Img({ src, alt, placeholderLabel, className, ...rest }: ImgProps
       src={src}
       alt={alt}
       className={className}
-      onError={() => setBroken(true)}
+      onError={() => {
+        setBroken(true);
+        onBroken?.();
+      }}
     />
   );
 }

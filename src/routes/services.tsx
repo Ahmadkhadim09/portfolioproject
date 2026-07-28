@@ -76,9 +76,9 @@ function Services() {
       <section className="relative flex min-h-[55vh] items-center overflow-hidden rounded-3xl">
         <div className="absolute inset-0 z-0">
           <Img
-            src="/images/gallery/00000049-PHOTO-2026-07-25-18-04-54.jpg"
+            src="/images/gallery/00000037-PHOTO-2026-07-25-17-59-06.jpg"
             alt="Services"
-            className="h-full w-full object-cover object-top"
+            className="h-full w-full object-cover object-center scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0D0714] via-[#0D0714]/75 to-[#0D0714]/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0D0714] via-transparent to-transparent" />

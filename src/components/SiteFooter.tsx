@@ -11,7 +11,7 @@ export function SiteFooter() {
         <RevealOnScroll className="md:col-span-2">
           <div className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden">
-              <img src="/images/mainonelogo.webp" alt="Logo" className="h-full w-full object-contain" />
+              <img src="/images/mainlogo.png" alt="Owais Ahmad Khan Logo" className="h-full w-full object-contain" />
             </span>
             <span className="font-display text-lg font-bold text-white">Owais Ahmad Khan</span>
           </div>

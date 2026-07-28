@@ -27,8 +27,8 @@ const mainSkills = [
 ];
 
 const education = [
-  { school: "FAST NUCES Lahore", degree: "Master of Science in Software Engineering", year: "2016-2018", logo: "/images/fast-nuces-logo.svg" },
-  { school: "The University of Lahore", degree: "Bachelor of Science in Computer Science", year: "2012-2016", logo: "/images/uol-logo.svg" },
+  { school: "FAST NUCES Lahore", degree: "Master of Science in Software Engineering", year: "2016-2018", logo: "/images/fastlogo.png" },
+  { school: "The University of Lahore", degree: "Bachelor of Science in Computer Science", year: "2012-2016", logo: "/images/uollogo.png" },
 ];
 
 const experience = [
