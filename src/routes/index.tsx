@@ -118,13 +118,12 @@ function AnimatedHeadline({ reducedMotion }: { reducedMotion: boolean | null }) 
                 transition={{
                   delay: 0.15 + idx * 0.2,
                   duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: [0.22, 1, 0.36, 1] as any,
                 }}
-                className={`mr-[0.28em] inline-block ${
-                  word.accent
-                    ? "bg-gradient-to-r from-[#A855F7] via-[#8B5CF6] to-[#22D3EE] bg-clip-text text-transparent"
-                    : ""
-                }`}
+                className={`mr-[0.28em] inline-block ${word.accent
+                  ? "bg-gradient-to-r from-[#A855F7] via-[#8B5CF6] to-[#22D3EE] bg-clip-text text-transparent"
+                  : ""
+                  }`}
               >
                 {word.text}
               </motion.span>
@@ -160,10 +159,10 @@ function Home() {
     shouldReduceMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-        };
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] as any },
+      };
 
   return (
     <div className="relative">
@@ -335,7 +334,7 @@ function Home() {
                 Master of Science in Computer Science
               </p>
               <p className="mt-2 text-white/70 text-sm">
-                National University of Computer and Emerging Sciences<br/>
+                National University of Computer and Emerging Sciences<br />
                 Lahore Campus
               </p>
             </GlassCard>
@@ -351,7 +350,7 @@ function Home() {
                 Bachelor in Software Engineering
               </p>
               <p className="mt-2 text-white/70 text-sm">
-                Computer Software Engineering<br/>
+                Computer Software Engineering<br />
                 Lahore
               </p>
             </GlassCard>
@@ -512,12 +511,11 @@ function Home() {
           ].map((service, i) => (
             <RevealOnScroll key={service.title} delay={i * 0.1}>
               <GlassCard className="p-8 h-full flex flex-col group cursor-default hover:border-white/30 transition-colors">
-                <div className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 ${
-                  i === 0 ? "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-300" :
+                <div className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 ${i === 0 ? "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-300" :
                   i === 1 ? "bg-gradient-to-br from-cyan-500/30 to-sky-500/20 text-cyan-300" :
-                  i === 2 ? "bg-gradient-to-br from-pink-500/30 to-rose-500/20 text-pink-300" :
-                  "bg-gradient-to-br from-orange-500/30 to-amber-500/20 text-orange-300"
-                }`}>
+                    i === 2 ? "bg-gradient-to-br from-pink-500/30 to-rose-500/20 text-pink-300" :
+                      "bg-gradient-to-br from-orange-500/30 to-amber-500/20 text-orange-300"
+                  }`}>
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white tracking-tight">{service.title}</h3>
@@ -663,10 +661,9 @@ function ContactSection() {
   }
 
   const inputClass = (hasError?: string) =>
-    `mt-1.5 w-full rounded-xl border px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-white/20 bg-white/[0.03] ${
-      hasError
-        ? "border-red-500/50 focus:border-red-500/70 focus:shadow-lg focus:shadow-red-500/5"
-        : "border-white/[0.06] focus:border-purple-500/40 focus:shadow-lg focus:shadow-purple-500/5"
+    `mt-1.5 w-full rounded-xl border px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-white/20 bg-white/[0.03] ${hasError
+      ? "border-red-500/50 focus:border-red-500/70 focus:shadow-lg focus:shadow-red-500/5"
+      : "border-white/[0.06] focus:border-purple-500/40 focus:shadow-lg focus:shadow-purple-500/5"
     }`;
 
   return (

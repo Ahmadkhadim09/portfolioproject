@@ -344,6 +344,7 @@
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
+
 .hero-grid-lines {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 140px 100%;
@@ -351,30 +352,24 @@
 }
 
 .hero-photo-mask {
-  -webkit-mask-image: radial-gradient(
-    ellipse 72% 88% at 64% 36%,
-    black 22%,
-    rgba(0, 0, 0, 0.75) 48%,
-    rgba(0, 0, 0, 0.35) 62%,
-    transparent 78%
-  );
-  mask-image: radial-gradient(
-    ellipse 72% 88% at 64% 36%,
-    black 22%,
-    rgba(0, 0, 0, 0.75) 48%,
-    rgba(0, 0, 0, 0.35) 62%,
-    transparent 78%
-  );
+  -webkit-mask-image: radial-gradient(ellipse 72% 88% at 64% 36%,
+      black 22%,
+      rgba(0, 0, 0, 0.75) 48%,
+      rgba(0, 0, 0, 0.35) 62%,
+      transparent 78%);
+  mask-image: radial-gradient(ellipse 72% 88% at 64% 36%,
+      black 22%,
+      rgba(0, 0, 0, 0.75) 48%,
+      rgba(0, 0, 0, 0.35) 62%,
+      transparent 78%);
 }
 
 .hero-text-scrim {
-  background: linear-gradient(
-    90deg,
-    rgba(13, 7, 20, 0.95) 0%,
-    rgba(13, 7, 20, 0.7) 25%,
-    rgba(13, 7, 20, 0.2) 50%,
-    rgba(13, 7, 20, 0) 70%
-  );
+  background: linear-gradient(90deg,
+      rgba(13, 7, 20, 0.95) 0%,
+      rgba(13, 7, 20, 0.7) 25%,
+      rgba(13, 7, 20, 0.2) 50%,
+      rgba(13, 7, 20, 0) 70%);
 }
 
 .hero-dots-pattern {
@@ -398,7 +393,13 @@
 }
 
 .hero-portrait-accent {
-  /* placeholder for hero accent */
+  position: absolute;
+  inset: 24% 12% auto auto;
+  width: 55%;
+  height: 45%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.26), transparent 55%);
+  filter: blur(100px);
+  pointer-events: none;
 }
 
 /* Hide Lovable injected UI (dev widget) — override if plugin injects different selectors */
@@ -420,14 +421,6 @@ iframe[src*="lovable"] {
 [id*="lovable"] {
   display: none !important;
 }
-  position: absolute;
-  inset: 24% 12% auto auto;
-  width: 55%;
-  height: 45%;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.26), transparent 55%);
-  filter: blur(100px);
-  pointer-events: none;
-}
 
 .hero-portrait-image {
   background: transparent !important;
@@ -438,6 +431,7 @@ iframe[src*="lovable"] {
 }
 
 @keyframes hero-float {
+
   0%,
   100% {
     transform: translateY(0) translateX(0);
@@ -449,6 +443,7 @@ iframe[src*="lovable"] {
 }
 
 @keyframes hero-float-slow {
+
   0%,
   100% {
     transform: translateY(0) translateX(0);
@@ -466,6 +461,7 @@ iframe[src*="lovable"] {
 .hero-float-slow {
   animation: hero-float-slow 16s ease-in-out infinite;
 }
+
 /* ── Section Spacing ───────────────────────── */
 @utility section-spacing {
   padding-top: 100px;
@@ -498,6 +494,7 @@ iframe[src*="lovable"] {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(calc(-100% - 24px));
   }
@@ -507,6 +504,7 @@ iframe[src*="lovable"] {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(calc(-33.333% - 12px));
   }

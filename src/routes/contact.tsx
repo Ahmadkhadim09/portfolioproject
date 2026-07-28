@@ -32,6 +32,7 @@ const channels = [
 ];
 
 interface FormFields {
+  [key: string]: string;
   name: string;
   email: string;
   subject: string;
