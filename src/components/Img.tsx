@@ -13,7 +13,7 @@ type ImgProps = React.ImgHTMLAttributes<HTMLImageElement> & {
  * If the file doesn't exist yet, we render a colored placeholder in the same box,
  * so you can drop the real images into public/ later without touching any code.
  */
-export function Img({ src, alt, placeholderLabel, className, ...rest }: ImgProps) {
+export function Img({ src, alt, placeholderLabel, className, onBroken, ...rest }: ImgProps) {
   const [broken, setBroken] = useState(false);
 
   // Deterministic color from the src string so each slot gets its own tint.

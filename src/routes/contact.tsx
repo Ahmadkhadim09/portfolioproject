@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
 
 const channels = [
   { icon: FaEnvelope, label: "Email", value: "owais.ahmad60@gmail.com", href: "mailto:owais.ahmad60@gmail.com", accentClass: "bg-gradient-to-br from-fuchsia-500/25 to-violet-500/15 text-fuchsia-200" },
-  { icon: FaPhone, label: "Phone", value: "Available on request", href: "#", accentClass: "bg-gradient-to-br from-cyan-500/25 to-sky-500/15 text-cyan-200" },
+  { icon: FaPhone, label: "Phone", value: "0322 4221287", href: "tel:03224221287", accentClass: "bg-gradient-to-br from-cyan-500/25 to-sky-500/15 text-cyan-200" },
   { icon: FaGlobe, label: "Website", value: "zaisystems.com", href: "https://zaisystems.com", accentClass: "bg-gradient-to-br from-emerald-500/25 to-lime-500/15 text-emerald-200" },
   { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/owaisahmadkhan", href: "https://linkedin.com/in/owaisahmadkhan", accentClass: "bg-gradient-to-br from-indigo-500/25 to-blue-500/15 text-indigo-200" },
   { icon: FaInstagram, label: "Instagram", value: "@theowaisahmadkhan", href: "https://www.instagram.com/theowaisahmadkhan/", accentClass: "bg-gradient-to-br from-amber-500/25 to-orange-500/15 text-amber-200" },
@@ -94,15 +94,21 @@ function Contact() {
     }
     setErrors({});
     setIsSending(true);
+
+    const phoneNumber = "03224221287";
+    const message = `Hello, I am ${fields.name}.\nEmail: ${fields.email}\nSubject: ${fields.subject}\n\n${fields.message}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
     try {
-      await EmailService.sendEmail(fields);
-      toast.success("Your message has been sent successfully!", {
-        description: "I'll get back to you as soon as possible.",
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      toast.success("Opening WhatsApp now", {
+        description: "Your message has been prepared for Owais.",
       });
       setFields({ name: "", email: "", subject: "", message: "" });
     } catch {
-      toast.error("Failed to send message. Please try again.", {
-        description: "If the issue persists, reach out directly via email.",
+      toast.error("Could not open WhatsApp automatically. Please try again.", {
+        description: "You can also contact us directly on WhatsApp.",
       });
     } finally {
       setIsSending(false);

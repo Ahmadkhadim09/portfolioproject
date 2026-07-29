@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles, Play, Mail, Phone } from "lucide-react";
+import { ArrowRight, Sparkles, Play, Mail, Phone, MessageCircle } from "lucide-react";
 import { FaCode, FaPaintBrush, FaRocket, FaChartLine, FaUsers, FaClock, FaPalette, FaMicrochip, FaLayerGroup } from "react-icons/fa";
 import { Img } from "@/components/Img";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
@@ -8,6 +8,7 @@ import { galleryData } from "@/data/galleryData";
 import { motion, useReducedMotion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import { toast } from "sonner";
+import { EmailService } from "@/lib/EmailService";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -261,15 +262,23 @@ function Home() {
       </section>
 
       {/* ─── Features Overview ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
-            Building Intelligent Digital Solutions
-          </h2>
-          <p className="mt-5 text-[#A8A8B8] text-lg">
-            I combine AI, automation, and modern web development to create applications that save time, improve workflows, and deliver smarter user experiences.
-          </p>
-        </RevealOnScroll>
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8" style={{
+        backgroundImage: 'url(/images/mainhomeimage3.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        borderRadius: '24px'
+      }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0D0714]/80 via-[#0D0714]/75 to-[#0D0714]/70 rounded-3xl" />
+        <div className="relative z-10">
+          <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
+            <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
+              Building Intelligent Digital Solutions
+            </h2>
+            <p className="mt-5 text-[#A8A8B8] text-lg">
+              Leveraging cutting-edge AI, intelligent automation, and modern web development to build scalable applications that drive efficiency, optimize business processes, and create exceptional digital experiences.
+            </p>
+          </RevealOnScroll>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5 auto-rows-fr">
           {features.map((f, i) => (
@@ -284,10 +293,11 @@ function Home() {
             </RevealOnScroll>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ─── Deep Dive Section ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 pb-24">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <div className="grid gap-6 lg:grid-cols-2 auto-rows-fr">
           {technologies.map((tech, i) => (
             <RevealOnScroll key={tech.label} delay={i * 0.15}>
@@ -313,7 +323,38 @@ function Home() {
       </section>
 
       {/* ─── Education Section ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
+        {/* Floating Glowing Particles */}
+        <div className="absolute inset-0 pointer-events-none" style={{ overflow: 'visible' }}>
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: Math.random() * 60 + 20,
+                height: Math.random() * 60 + 20,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: `radial-gradient(circle, rgba(${139 + Math.random() * 60},${92 + Math.random() * 60},${246},0.4), transparent)`,
+                filter: `blur(${Math.random() * 30 + 20}px)`,
+                boxShadow: `0 0 ${Math.random() * 40 + 20}px rgba(139, 92, 246, ${Math.random() * 0.5 + 0.3})`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: Math.random() * 4 + 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
             Education & Foundation
@@ -342,7 +383,7 @@ function Home() {
 
           <RevealOnScroll delay={0.1}>
             <GlassCard className="p-8 sm:p-12 text-center h-full">
-              <div className="flex h-20 w-20 mx-auto items-center justify-center rounded-2xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden mb-6 transition-transform duration-300">
+              <div className="flex h-20 w-20 mx-auto items-center justify-center rounded-2xl gradient-btn text-white shadow-lg shadow-purple-500/20 overflow-hidden mb-6 transition-transform duration-300 bg-white/10">
                 <img src="/images/uollogo.png" alt="UOL Logo" className="h-full w-full object-contain" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white tracking-tight">University of Lahore</h3>
@@ -356,10 +397,11 @@ function Home() {
             </GlassCard>
           </RevealOnScroll>
         </div>
+        </div>
       </section>
 
       {/* ─── Awards & Certifications Section ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
             Recognition &amp; Achievements
@@ -380,25 +422,8 @@ function Home() {
               "/images/cert-2.png",
               "/images/cert-3.png",
               "/images/cert4.png",
-              "/images/cert5.jpg",
-              "/images/cert6.png",
-              "/images/cert7.jpg",
-              "/images/cert8.jpg",
-              "/images/award4.png",
-              "/images/award5.png",
-              "/images/award6.png",
-              "/images/award8.png",
-              "/images/award9.png",
-              "/images/award12.png",
-              "/images/award13.png",
-              "/images/award14.png",
-              "/images/cer13.png",
-              "/images/cer14.jpg",
-              "/images/cer15.jpg",
-              "/images/cer16.jpg",
-              "/images/cer17.jpg",
             ].map((img, i) => (
-              <div key={i} className="mx-4 flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-xl glow-panel p-3">
+              <div key={i} className="mx-6 flex h-48 w-48 shrink-0 items-center justify-center overflow-hidden rounded-xl glow-panel p-4">
                 <Img
                   src={img}
                   alt={`Award ${i + 1}`}
@@ -412,7 +437,7 @@ function Home() {
       </section>
 
       {/* ─── YouTube Podcast Banner ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
             Latest Podcast Episodes
@@ -425,7 +450,7 @@ function Home() {
         <div className="w-full overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.01)" }}>
           <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
             {[...podcastVideos, ...podcastVideos, ...podcastVideos].map((v, i) => (
-              <a key={`${v.id}-${i}`} href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" className="mx-3 block w-56 shrink-0 overflow-hidden rounded-xl glass-card transition-all hover:scale-105 hover:border-purple-500/20">
+              <a key={`${v.id}-${i}`} href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" className="mx-4 block w-72 shrink-0 overflow-hidden rounded-xl glass-card transition-all hover:scale-105 hover:border-purple-500/20">
                 <div className="relative aspect-video w-full group">
                   <Img
                     src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
@@ -446,7 +471,7 @@ function Home() {
       </section>
 
       {/* ─── Services Section ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
             Services &amp; Expertise
@@ -456,7 +481,7 @@ function Home() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid gap-6 md:grid-cols-2 auto-rows-fr">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 auto-rows-fr">
           {[
             {
               title: "AI & Generative AI",
@@ -492,7 +517,8 @@ function Home() {
                 "ASP.NET Core | C# | Node.js | Python",
                 "REST APIs | Microservices | Secure Authentication",
                 "SQL, NoSQL, Neo4j | ETL Pipelines",
-                "AWS | Azure | GCP | Docker | CI/CD"
+                "AWS | Azure | GCP | Docker | CI/CD",
+                "Serverless Architecture | Kubernetes Orchestration"
               ],
               desc: "Delivered 100+ projects across AI, SaaS, automation, and enterprise systems for global clients."
             },
@@ -500,11 +526,12 @@ function Home() {
               title: "Leadership & Delivery",
               icon: FaUsers,
               skills: [
-                "Agile Project Management",
+                "Agile Project Management & Scrum",
                 "Product Roadmaps & Technical Strategy",
-                "Remote Team Coordination",
+                "Remote Team Coordination & Mentoring",
                 "System Audits & Performance Optimization",
-                "Clean, scalable, business-aligned architecture"
+                "Clean, scalable, business-aligned architecture",
+                "Stakeholder Management & Risk Mitigation"
               ],
               desc: "Building intelligent, secure, and scalable systems that drive measurable growth — not just writing code."
             },
@@ -535,7 +562,7 @@ function Home() {
       </section>
 
       {/* ─── Gallery Showcase ─── */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
             Moments That Matter
@@ -645,15 +672,21 @@ function ContactSection() {
     }
     setErrors({});
     setIsSending(true);
+
+    const phoneNumber = "03224221287";
+    const message = `Hello, I am ${fields.name}.\nEmail: ${fields.email}\nSubject: ${fields.subject}\n\n${fields.message}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.success("Your message has been sent successfully!", {
-        description: "I'll get back to you as soon as possible.",
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      toast.success("Opening WhatsApp now", {
+        description: "Your message has been prepared for Owais.",
       });
       setFields({ name: "", email: "", subject: "", message: "" });
     } catch {
-      toast.error("Failed to send message. Please try again.", {
-        description: "If the issue persists, reach out directly via email.",
+      toast.error("Could not open WhatsApp automatically. Please try again.", {
+        description: "You can also contact us directly on WhatsApp.",
       });
     } finally {
       setIsSending(false);
@@ -775,7 +808,7 @@ function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-wide text-white/50">Phone</p>
-                    <p className="text-white font-semibold">Available on request</p>
+                    <p className="text-white font-semibold">0322 4221287</p>
                   </div>
                 </div>
               </GlassCard>

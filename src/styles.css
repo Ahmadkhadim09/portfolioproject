@@ -511,7 +511,7 @@ iframe[src*="lovable"] {
 }
 
 .animate-marquee {
-  animation: marquee 60s linear infinite;
+  animation: marquee 20s linear infinite;
 }
 
 /* ── Award Cards Enhancement ───────────────────────── */

@@ -76,7 +76,7 @@ function Services() {
       <section className="relative flex min-h-[55vh] items-center overflow-hidden rounded-3xl">
         <div className="absolute inset-0 z-0">
           <Img
-            src="/images/gallery/00000037-PHOTO-2026-07-25-17-59-06.jpg"
+            src="/images/gallery/00000039-PHOTO-2026-07-25-18-04-50.jpg"
             alt="Services"
             className="h-full w-full object-cover object-center scale-110"
           />
@@ -100,8 +100,8 @@ function Services() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 section-spacing pb-28">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-          {servicesList.map((s, i) => (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 auto-rows-fr">
+          {servicesList.slice(0, 4).map((s, i) => (
             <RevealOnScroll key={s.name} delay={i * 0.1} className="h-full">
               <a href={s.href} className="block h-full">
                 <GlassCard className="p-7 group h-full flex flex-col cursor-pointer !rounded-[20px]">

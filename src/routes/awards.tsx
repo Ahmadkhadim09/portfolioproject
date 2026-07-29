@@ -62,7 +62,7 @@ function Awards() {
             </div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Awards</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
             {awards.map((award) => (
               <div key={award.id} className={award.file ? "award-card" : "award-card-empty"}>
                 {award.file && (

@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { MessageCircle } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -125,6 +126,8 @@ function RootComponent() {
 
   const currentPath = router.state.location.pathname;
 
+  const isWeddingRoute = currentPath === "/barat" || currentPath === "/walima";
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative flex min-h-screen flex-col overflow-x-hidden">
@@ -133,7 +136,7 @@ function RootComponent() {
         <div className="bg-orb bg-orb-2" aria-hidden="true" />
         <div className="bg-orb bg-orb-3" aria-hidden="true" />
 
-        <SiteHeader />
+        {!isWeddingRoute && <SiteHeader />}
         <AnimatePresence mode="wait">
           <motion.main
             key={currentPath}
@@ -146,7 +149,16 @@ function RootComponent() {
             <Outlet />
           </motion.main>
         </AnimatePresence>
-        <SiteFooter />
+        {!isWeddingRoute && <SiteFooter />}
+        <a
+          href="https://wa.me/03224221287"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contact us on WhatsApp"
+          className="fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 transition-transform duration-300 hover:scale-105 hover:shadow-xl sm:bottom-6 sm:right-6"
+        >
+          <MessageCircle className="h-7 w-7" />
+        </a>
         <Toaster />
       </div>
     </QueryClientProvider>

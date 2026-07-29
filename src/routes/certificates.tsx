@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BadgeCheck } from "lucide-react";
+import BadgeCheck from "@/components/icons/BadgeCheck";
 import { Img } from "@/components/Img";
 
 export const Route = createFileRoute("/certificates")({

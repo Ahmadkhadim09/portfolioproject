@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Img } from "@/components/Img";
-import { ArrowRight, GraduationCap, CheckCircle2, Cloud, Server, Shield, FileCode } from "lucide-react";
-import { FaChessKnight, FaLaptopCode, FaBuilding, FaChalkboardTeacher } from "react-icons/fa";
+import { ArrowRight, GraduationCap, CheckCircle2, Cloud, Server, Shield, FileCode, Database, Zap, Users, GitBranch, Globe } from "lucide-react";
+import { FaChessKnight, FaLaptopCode, FaBuilding, FaChalkboardTeacher, FaGitAlt } from "react-icons/fa";
 import { FaUsersGear, FaShieldHalved } from "react-icons/fa6";
-import { SiReact, SiTypescript, SiNodedotjs, SiMongodb, SiPostgresql, SiNextdotjs, SiTailwindcss, SiJavascript, SiPython, SiLaravel, SiDocker, SiGit } from "react-icons/si";
+import { SiReact, SiTypescript, SiNodedotjs, SiMongodb, SiPostgresql, SiNextdotjs, SiTailwindcss, SiJavascript, SiPython, SiLaravel, SiDocker, SiGit, SiHtml5, SiSass, SiBootstrap, SiJquery, SiRedux, SiAngular, SiVuedotjs, SiPhp, SiDotnet, SiMysql, SiFirebase, SiNetlify, SiGithub, SiJira } from "react-icons/si";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { GlassCard } from "@/components/GlassCard";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
@@ -62,23 +62,79 @@ const techStack = [
 const skills = [
   {
     category: "Frontend",
-    items: ["HTML 5", "CSS3", "Sass", "Bootstrap 5", "JavaScript", "ECMAScript", "AJAX", "JSON", "jQuery", "React Js", "Redux", "Material UI", "TypeScript", "Angular", "Vue JS"],
+    items: [
+      { name: "HTML 5", icon: SiHtml5, color: "#E34C26" },
+      { name: "CSS3", icon: FileCode, color: "#1572B6" },
+      { name: "Sass", icon: SiSass, color: "#CC6699" },
+      { name: "Bootstrap 5", icon: SiBootstrap, color: "#7952B3" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "ECMAScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "AJAX", icon: Zap, color: "#6B8E23" },
+      { name: "JSON", icon: FileCode, color: "#A6C23E" },
+      { name: "jQuery", icon: SiJquery, color: "#0769AD" },
+      { name: "React Js", icon: SiReact, color: "#61DAFB" },
+      { name: "Redux", icon: SiRedux, color: "#764ABC" },
+      { name: "Material UI", icon: SiReact, color: "#007FFF" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { name: "Angular", icon: SiAngular, color: "#DD0031" },
+      { name: "Vue JS", icon: SiVuedotjs, color: "#4FC08D" },
+    ],
   },
   {
     category: "Backend",
-    items: ["Php (Laravel)", "Java", "C Sharp (C#)", "Asp.net Core", "Asp.net MVC5", "Node Js", "C/ C++ Language", "Python"],
+    items: [
+      { name: "Php (Laravel)", icon: SiPhp, color: "#777BB4" },
+      { name: "Java", icon: FileCode, color: "#007396" },
+      { name: "C Sharp (C#)", icon: FileCode, color: "#239120" },
+      { name: "Asp.net Core", icon: SiDotnet, color: "#512BD4" },
+      { name: "Asp.net MVC5", icon: SiDotnet, color: "#512BD4" },
+      { name: "Node Js", icon: SiNodedotjs, color: "#339933" },
+      { name: "C/ C++ Language", icon: FileCode, color: "#00599C" },
+      { name: "Python", icon: SiPython, color: "#3776AB" },
+    ],
   },
   {
     category: "Database",
-    items: ["SQL (SQL Server)", "My SQL", "MongoDB", "Firebase", "Azure Data Studio"],
+    items: [
+      { name: "SQL (SQL Server)", icon: Server, color: "#CC2927" },
+      { name: "My SQL", icon: SiMysql, color: "#00758F" },
+      { name: "MongoDB", icon: SiMongodb, color: "#13AA52" },
+      { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+      { name: "Azure Data Studio", icon: Cloud, color: "#0078D4" },
+    ],
   },
   {
     category: "Deployment",
-    items: ["DevOps", "AWS", "Azure", "Heroku", "Salesforce", "Netlify", "Git/GitHub", "Namecheap", "GoDaddy", "Bluehost", "Smarter Asp.net"],
+    items: [
+      { name: "DevOps", icon: SiDocker, color: "#2496ED" },
+      { name: "AWS", icon: Server, color: "#FF9900" },
+      { name: "Azure", icon: Cloud, color: "#0078D4" },
+      { name: "Heroku", icon: Cloud, color: "#430098" },
+      { name: "Salesforce", icon: Cloud, color: "#00A1DF" },
+      { name: "Netlify", icon: SiNetlify, color: "#00C7B7" },
+      { name: "Git/GitHub", icon: SiGithub, color: "#181717" },
+      { name: "Namecheap", icon: Globe, color: "#FF6B00" },
+      { name: "GoDaddy", icon: Globe, color: "#0047BA" },
+      { name: "Bluehost", icon: Globe, color: "#0073AA" },
+      { name: "Smarter Asp.net", icon: Server, color: "#512BD4" },
+    ],
   },
   {
     category: "Management",
-    items: ["Agile Scrum Master", "Product Owner", "Technical Project Manager", "Technical Product Manager", "Technical Program Manager", "Technical Portfolio Manager", "Jira Expert", "Time Management", "Communication", "Leadership", "Team Management", "Marketing Skills"],
+    items: [
+      { name: "Agile Scrum Master", icon: SiJira, color: "#0052CC" },
+      { name: "Product Owner", icon: Users, color: "#764BA2" },
+      { name: "Technical Project Manager", icon: CheckCircle2, color: "#06B6D4" },
+      { name: "Technical Product Manager", icon: Zap, color: "#FBBF24" },
+      { name: "Technical Program Manager", icon: GitBranch, color: "#8B5CF6" },
+      { name: "Technical Portfolio Manager", icon: Database, color: "#EC4899" },
+      { name: "Jira Expert", icon: SiJira, color: "#0052CC" },
+      { name: "Time Management", icon: Shield, color: "#3B82F6" },
+      { name: "Communication", icon: Users, color: "#10B981" },
+      { name: "Leadership", icon: FaUsersGear, color: "#F59E0B" },
+      { name: "Team Management", icon: Users, color: "#06B6D4" },
+      { name: "Marketing Skills", icon: Zap, color: "#EF4444" },
+    ],
   },
 ];
 
@@ -254,33 +310,6 @@ function About() {
 
               {activeTab === "skills" && (
                 <div className="space-y-8">
-                  {/* Tech Stack Banner */}
-                  <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
-                    <div className="tech-banner-wrapper">
-                      <motion.div 
-                        className="flex gap-8 py-8"
-                        animate={{ x: [0, -2000] }}
-                        transition={{ 
-                          duration: 30, 
-                          repeat: Infinity, 
-                          ease: "linear"
-                        }}
-                      >
-                        {[...techStack, ...techStack].map((tech, idx) => {
-                          const Icon = tech.icon;
-                          return (
-                            <div key={idx} className="flex-shrink-0 flex flex-col items-center gap-3 px-8">
-                              <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] transition-all hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-violet-500/20" style={{ boxShadow: `0 0 0 1px ${tech.color}22 inset` }}>
-                                <Icon className="h-8 w-8" style={{ color: tech.color }} />
-                              </div>
-                              <span className="text-xs font-medium text-white/70 text-center whitespace-nowrap">{tech.name}</span>
-                            </div>
-                          );
-                        })}
-                      </motion.div>
-                    </div>
-                  </div>
-
                   {/* Skills Grid */}
                   <div className="grid gap-5 md:grid-cols-2 auto-rows-fr">
                     {skills.map((skillGroup, idx) => (
@@ -288,15 +317,23 @@ function About() {
                         <h3 className="mb-5 flex items-center gap-3 font-display text-2xl font-bold text-white">
                           <CheckCircle2 className="h-5 w-5 text-violet-400" /> {skillGroup.category}
                         </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {skillGroup.items.map((skill, i) => (
-                            <span
-                              key={i}
-                              className="rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/70 transition-all hover:bg-violet-500/20 hover:text-white hover:border-violet-500/40 cursor-default"
-                            >
-                              {skill}
-                            </span>
-                          ))}
+                        <div className="flex flex-wrap gap-3">
+                          {skillGroup.items.map((skill, i) => {
+                            const Icon = skill.icon;
+                            return (
+                              <div
+                                key={i}
+                                className="flex flex-col items-center gap-2 p-3 rounded-[10px] border border-white/[0.08] bg-white/[0.04] transition-all hover:bg-white/[0.08] hover:border-white/[0.15] hover:shadow-lg hover:shadow-violet-500/10 cursor-default group"
+                              >
+                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/[0.06] group-hover:bg-white/[0.1] transition-colors">
+                                  <Icon className="h-5 w-5" style={{ color: skill.color }} />
+                                </div>
+                                <span className="text-xs font-medium text-white/70 text-center whitespace-nowrap group-hover:text-white transition-colors">
+                                  {skill.name}
+                                </span>
+                              </div>
+                            );
+                          })}
                         </div>
                       </GlassCard>
                     ))}
@@ -311,6 +348,42 @@ function About() {
           <Link to="/awards" className="inline-flex rounded-full px-8 py-3 text-sm font-semibold gradient-btn gradient-btn-hover text-white transition-all">
             View Awards &amp; Achievements
           </Link>
+        </div>
+      </section>
+
+      {/* ─── Tech Stack Banner Section ─── */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <RevealOnScroll className="mb-12 text-center">
+          <h2 className="font-display text-4xl font-bold text-white tracking-tight">
+            Tech Stack &amp; <span className="gradient-text">Tools</span>
+          </h2>
+          <p className="mt-4 text-lg text-white/60">Cutting-edge technologies powering modern solutions</p>
+        </RevealOnScroll>
+        
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+          <div className="tech-banner-wrapper">
+            <motion.div 
+              className="flex gap-8 py-8"
+              animate={{ x: [0, -2000] }}
+              transition={{ 
+                duration: 30, 
+                repeat: Infinity, 
+                ease: "linear"
+              }}
+            >
+              {[...techStack, ...techStack].map((tech, idx) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={idx} className="flex-shrink-0 flex flex-col items-center gap-3 px-8">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] transition-all hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-violet-500/20" style={{ boxShadow: `0 0 0 1px ${tech.color}22 inset` }}>
+                      <Icon className="h-8 w-8" style={{ color: tech.color }} />
+                    </div>
+                    <span className="text-xs font-medium text-white/70 text-center whitespace-nowrap">{tech.name}</span>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

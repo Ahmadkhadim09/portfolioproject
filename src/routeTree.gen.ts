@@ -12,11 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AwardsRouteImport } from './routes/awards'
+import { Route as BaratRouteImport } from './routes/barat'
 import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as WalimaRouteImport } from './routes/walima'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,6 +33,11 @@ const AboutRoute = AboutRouteImport.update({
 const AwardsRoute = AwardsRouteImport.update({
   id: '/awards',
   path: '/awards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaratRoute = BaratRouteImport.update({
+  id: '/barat',
+  path: '/barat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CertificatesRoute = CertificatesRouteImport.update({
@@ -58,37 +65,48 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WalimaRoute = WalimaRouteImport.update({
+  id: '/walima',
+  path: '/walima',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
+  '/barat': typeof BaratRoute
   '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/walima': typeof WalimaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
+  '/barat': typeof BaratRoute
   '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/walima': typeof WalimaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
+  '/barat': typeof BaratRoute
   '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/walima': typeof WalimaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,42 +114,50 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/awards'
+    | '/barat'
     | '/certificates'
     | '/contact'
     | '/gallery'
     | '/podcast'
     | '/services'
+    | '/walima'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/awards'
+    | '/barat'
     | '/certificates'
     | '/contact'
     | '/gallery'
     | '/podcast'
     | '/services'
+    | '/walima'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/awards'
+    | '/barat'
     | '/certificates'
     | '/contact'
     | '/gallery'
     | '/podcast'
     | '/services'
+    | '/walima'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AwardsRoute: typeof AwardsRoute
+  BaratRoute: typeof BaratRoute
   CertificatesRoute: typeof CertificatesRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   PodcastRoute: typeof PodcastRoute
   ServicesRoute: typeof ServicesRoute
+  WalimaRoute: typeof WalimaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -155,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/awards'
       fullPath: '/awards'
       preLoaderRoute: typeof AwardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barat': {
+      id: '/barat'
+      path: '/barat'
+      fullPath: '/barat'
+      preLoaderRoute: typeof BaratRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/certificates': {
@@ -192,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/walima': {
+      id: '/walima'
+      path: '/walima'
+      fullPath: '/walima'
+      preLoaderRoute: typeof WalimaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -199,11 +239,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AwardsRoute: AwardsRoute,
+  BaratRoute: BaratRoute,
   CertificatesRoute: CertificatesRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   PodcastRoute: PodcastRoute,
   ServicesRoute: ServicesRoute,
+  WalimaRoute: WalimaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
