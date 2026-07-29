@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Music, Pause } from "lucide-react";
 
 const heroPalace = "/images/hero-palace.jpg";
+const baraImage2 = "/images/baratimage2.png";
 const chandelier = "/images/chandelier.png";
 const curtains = "/images/curtains.jpg";
 const crest = "/images/crest.png";
@@ -259,11 +260,11 @@ function Countdown() {
   return (
     <div className="mx-auto grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
       {cells.map(([label, value]) => (
-        <div key={label} className="panel-royal rounded-sm px-4 py-6 text-center">
-          <div className="font-display text-4xl text-gold-gradient sm:text-5xl">
+        <div key={label} className="rounded-[1.5rem] border border-yellow-400/60 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-400 px-4 py-6 text-center text-red-950 shadow-[0_20px_60px_rgba(127,29,29,0.2)]">
+          <div className="font-display text-4xl sm:text-5xl">
             {String(value).padStart(2, "0")}
           </div>
-          <div className="label-caps mt-2 text-[0.6rem] text-muted-foreground">{label}</div>
+          <div className="label-caps mt-2 text-[0.6rem] text-red-800/80">{label}</div>
         </div>
       ))}
     </div>
@@ -326,12 +327,12 @@ function ScratchReveal() {
 
   return (
     <div className="relative mx-auto max-w-xl select-none">
-      <div className="panel-royal rounded-sm px-6 py-14 text-center">
-        <p className="label-caps text-[0.6rem] text-muted-foreground">The Big Day</p>
-        <p className="mt-4 font-display text-5xl leading-tight text-gold-gradient sm:text-6xl">
+      <div className="rounded-[1.75rem] border border-yellow-400/60 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-400 px-6 py-14 text-center text-red-950 shadow-[0_20px_70px_rgba(127,29,29,0.2)]">
+        <p className="label-caps text-[0.6rem] text-red-800/80">The Big Day</p>
+        <p className="mt-4 font-display text-5xl leading-tight sm:text-6xl">
           31 October
         </p>
-        <p className="mt-2 font-display text-3xl tracking-[0.3em] text-primary">2026</p>
+        <p className="mt-2 font-display text-3xl tracking-[0.3em] text-red-900">2026</p>
       </div>
 
       <canvas
@@ -373,7 +374,7 @@ function Invitation() {
       <CurtainIntro open={opened} onOpen={handleOpen} />
       {opened && <MusicToggle playing={music.playing} onToggle={music.toggle} />}
 
-      <main className="relative min-h-screen overflow-hidden bg-background">
+      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,78,78,0.18),_transparent_45%),linear-gradient(135deg,_#2d0404_0%,_#110202_100%)] text-red-50">
         {/* HERO */}
         <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
           <img
@@ -383,8 +384,8 @@ function Invitation() {
             height={1024}
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_5%,var(--color-background)_92%)]" />
-          <div className="absolute inset-0 bg-background/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_5%,rgba(17,2,2,0.9)_92%)]" />
+          <div className="absolute inset-0 bg-[#130202]/70" />
 
           <img
             src={chandelier}
@@ -411,18 +412,31 @@ function Invitation() {
             className="animate-sway absolute -top-4 right-4 hidden w-24 opacity-70 sm:block"
           />
 
-          <div className="animate-rise relative mt-40 sm:mt-52">
-            <p className="label-caps">Save the Date</p>
-            <h1 className="mt-6 font-display text-6xl leading-[0.95] text-gold-gradient sm:text-8xl">
+          <div className="animate-rise relative mt-40 flex flex-col items-center sm:mt-52">
+            <p className="label-caps text-red-200">Save the Date</p>
+            <h1 className="mt-6 font-display text-6xl leading-[0.95] bg-gradient-to-r from-red-200 via-yellow-200 to-red-100 bg-clip-text text-transparent sm:text-8xl">
               Owais
-              <span className="mx-3 block text-3xl italic text-secondary-foreground sm:inline sm:text-4xl">
+              <span className="mx-3 block text-3xl italic text-red-100 sm:inline sm:text-4xl">
                 &amp;
               </span>
               Minahil
             </h1>
-            <p className="mt-6 font-display text-2xl tracking-[0.3em] text-primary">
+            <p className="mt-6 font-display text-2xl tracking-[0.3em] text-red-100">
               31 · 10 · 2026
             </p>
+          </div>
+        </section>
+
+        <section className="mx-auto -mt-8 w-full max-w-6xl px-4 sm:px-6 sm:-mt-12">
+          <div className="mx-auto overflow-hidden rounded-[2rem] border border-red-400/30 bg-red-950/40 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+            <img
+              src={baraImage2}
+              alt="Decorative wedding ambiance and celebration details"
+              loading="lazy"
+              width={1600}
+              height={1000}
+              className="block aspect-[4/3] w-full object-cover object-center sm:aspect-[16/10] lg:aspect-[16/8]"
+            />
           </div>
         </section>
 
@@ -430,24 +444,24 @@ function Invitation() {
 
         {/* INVITATION */}
         <section className="mx-auto max-w-3xl px-6 text-center">
-          <p className="font-display text-2xl text-primary">
+          <p className="font-display text-2xl text-red-100">
             بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
           </p>
-          <p className="label-caps mt-8 leading-loose text-muted-foreground">
+          <p className="label-caps mt-8 leading-loose text-red-200/90">
             Together with the blessings of our families
             <br />
             we joyfully invite you to celebrate the wedding of
           </p>
 
-          <div className="mt-10 grid gap-8 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
-            <div>
-              <h2 className="font-display text-5xl text-gold-gradient">Owais</h2>
-              <p className="mt-3 text-sm text-muted-foreground">Owais A Khan</p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+            <div className="w-full">
+              <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Owais</h2>
+              <p className="mt-3 text-sm text-red-200/80">Owais A Khan</p>
             </div>
-            <span className="font-display text-3xl italic text-primary">&amp;</span>
-            <div>
-              <h2 className="font-display text-5xl text-gold-gradient">Minahil</h2>
-              <p className="mt-3 text-sm text-muted-foreground">
+            <span className="font-display text-3xl italic text-red-100">&amp;</span>
+            <div className="w-full">
+              <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Minahil</h2>
+              <p className="mt-3 text-sm text-red-200/80">
                 Daughter of Kashif Shuja
                 <br />&amp; Rabia Kashif
               </p>
@@ -459,8 +473,8 @@ function Invitation() {
 
         {/* SCRATCH REVEAL */}
         <section className="mx-auto max-w-3xl px-6 text-center">
-          <p className="label-caps">✦ A Little Secret ✦</p>
-          <h2 className="mt-3 mb-10 font-display text-4xl text-gold-gradient sm:text-5xl">
+          <p className="label-caps text-red-200">✦ A Little Secret ✦</p>
+          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
             Scratch to Reveal
           </h2>
           <ScratchReveal />
@@ -469,24 +483,24 @@ function Invitation() {
         <Divider />
 
         {/* EVENTS */}
-        <section className="mx-auto max-w-5xl px-6">
+        <section className="mx-auto max-w-5xl px-6 text-center">
           <div className="text-center">
-            <p className="label-caps">✦ The Royal Celebrations ✦</p>
-            <h2 className="mt-3 font-display text-4xl text-gold-gradient sm:text-5xl">
+            <p className="label-caps text-red-200">✦ The Royal Celebrations ✦</p>
+            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
               Wedding Events
             </h2>
           </div>
 
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2">
+          <ul className="mt-12 grid place-items-center gap-6 sm:grid-cols-2">
             {EVENTS.map((ev) => (
-              <li key={ev.n} className="panel-royal rounded-sm p-8 text-center">
-                <p className="label-caps text-[0.6rem]">✦ Event {ev.n} ✦</p>
-                <h3 className="mt-4 font-display text-4xl text-gold-gradient">{ev.name}</h3>
-                <p className="mt-3 text-sm text-foreground/90">
+              <li key={ev.n} className="w-full max-w-xl rounded-[2rem] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_70px_rgba(251,191,36,0.2)]">
+                <p className="label-caps text-[0.6rem] text-red-800/80">✦ Event {ev.n} ✦</p>
+                <h3 className="mt-4 font-display text-4xl text-red-900">{ev.name}</h3>
+                <p className="mt-3 text-sm text-red-900/80">
                   {ev.date} · {ev.time}
                 </p>
-                <p className="label-caps mt-3 text-[0.6rem] text-muted-foreground">{ev.venue}</p>
-                <p className="mt-4 font-display text-lg italic text-muted-foreground">{ev.note}</p>
+                <p className="label-caps mt-3 text-[0.6rem] text-red-800/80">{ev.venue}</p>
+                <p className="mt-4 font-display text-lg italic text-red-900/80">{ev.note}</p>
               </li>
             ))}
           </ul>
@@ -496,33 +510,33 @@ function Invitation() {
 
         {/* COUNTDOWN */}
         <section className="mx-auto max-w-5xl px-6 text-center">
-          <p className="label-caps">✦ The Wait Begins ✦</p>
-          <h2 className="mt-3 mb-10 font-display text-4xl text-gold-gradient sm:text-5xl">
+          <p className="label-caps text-red-200">✦ The Wait Begins ✦</p>
+          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
             Counting Down
           </h2>
           <Countdown />
-          <p className="mt-6 text-sm text-muted-foreground">Until 31st October 2026 · The Baraat</p>
+          <p className="mt-6 text-sm text-red-200/90">Until 31st October 2026 · The Baraat</p>
         </section>
 
         <Divider />
 
         {/* RSVP */}
         <section className="mx-auto max-w-xl px-6 text-center">
-          <p className="label-caps text-red-300">✦ Kindly Confirm ✦</p>
-          <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-400 via-red-300 to-white text-transparent bg-clip-text sm:text-5xl">R.S.V.P</h2>
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+          <p className="label-caps text-red-200">✦ Kindly Confirm ✦</p>
+          <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-400 via-red-300 to-yellow-100 bg-clip-text text-transparent sm:text-5xl">R.S.V.P</h2>
+          <ul className="mt-10 grid place-items-center gap-6 sm:grid-cols-2">
             {RSVP_CONTACTS.map((c) => (
-              <li key={c.phone}>
+              <li key={c.phone} className="w-full">
                 <a
                   href={`https://wa.me/92${c.phone.replace(/-/g, "").replace(/^0/, "")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-[32px] border border-red-500/30 bg-gradient-to-br from-red-950/95 via-red-900/90 to-red-800/90 p-8 text-center shadow-[0_20px_80px_rgba(239,68,68,0.18)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-red-500/30"
+                  className="block rounded-[32px] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_80px_rgba(251,191,36,0.2)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-yellow-500/30"
                 >
-                  <p className="text-sm uppercase tracking-[0.35em] text-red-300">WhatsApp</p>
-                  <h3 className="mt-4 font-display text-3xl font-semibold text-white">{c.name}</h3>
-                  <p className="mt-3 text-sm text-red-200/90">Tap to chat for RSVP</p>
-                  <span className="mt-6 inline-flex items-center justify-center rounded-full border border-red-500/40 bg-red-950/70 px-4 py-2 text-sm font-semibold text-red-100">
+                  <p className="text-sm uppercase tracking-[0.35em] text-red-800/80">WhatsApp</p>
+                  <h3 className="mt-4 font-display text-3xl font-semibold text-red-900">{c.name}</h3>
+                  <p className="mt-3 text-sm text-red-900/80">Tap to chat for RSVP</p>
+                  <span className="mt-6 inline-flex items-center justify-center rounded-full border border-red-500/40 bg-red-900/70 px-4 py-2 text-sm font-semibold text-red-50">
                     {c.phone}
                   </span>
                 </a>
@@ -534,20 +548,20 @@ function Invitation() {
         <Divider />
 
         {/* VENUES */}
-        <section className="mx-auto max-w-5xl px-6">
+        <section className="mx-auto max-w-5xl px-6 text-center">
           <div className="text-center">
-            <p className="label-caps">✦ Find Your Way ✦</p>
-            <h2 className="mt-3 font-display text-4xl text-gold-gradient sm:text-5xl">Venues</h2>
+            <p className="label-caps text-red-200">✦ Find Your Way ✦</p>
+            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">Venues</h2>
           </div>
           <ul className="mt-12 grid gap-6">
             {EVENTS.map((ev) => (
-              <li key={ev.n} className="panel-royal rounded-sm p-8 text-center">
-                <p className="label-caps text-[0.6rem]">✦ {ev.name} ✦</p>
-                <h3 className="mt-3 font-display text-3xl text-gold-gradient">{ev.venue}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <li key={ev.n} className="rounded-[2rem] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_70px_rgba(251,191,36,0.2)]">
+                <p className="label-caps text-[0.6rem] text-red-800/80">✦ {ev.name} ✦</p>
+                <h3 className="mt-3 font-display text-3xl text-red-900">{ev.venue}</h3>
+                <p className="mt-2 text-sm text-red-900/80">
                   {ev.date} · {ev.time}
                 </p>
-                <div className="mt-8 overflow-hidden rounded-sm border border-primary/30">
+                <div className="mt-8 overflow-hidden rounded-sm border border-red-400/40">
                   <iframe
                     title={`Map to ${ev.venue}`}
                     src={`https://www.google.com/maps?q=${encodeURIComponent(ev.venue + ", Lahore")}&output=embed`}
@@ -560,7 +574,7 @@ function Invitation() {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ev.venue + ", Lahore")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="label-caps mt-6 inline-block border-b border-primary/50 pb-1 text-[0.6rem] hover:text-gold-soft"
+                  className="label-caps mt-6 inline-block border-b border-red-700/50 pb-1 text-[0.6rem] text-red-800 hover:text-red-950"
                 >
                   Open in Google Maps
                 </a>
@@ -572,8 +586,8 @@ function Invitation() {
         <Divider />
 
         <footer className="px-6 pb-24 text-center">
-          <p className="font-display text-3xl text-primary">✦</p>
-          <p className="mx-auto mt-4 max-w-xl font-display text-xl italic text-muted-foreground">
+          <p className="font-display text-3xl text-red-100">✦</p>
+          <p className="mx-auto mt-4 max-w-xl font-display text-xl italic text-red-200/90">
             We cannot wait to celebrate this beautiful occasion with your presence, love, and
             blessings.
           </p>
