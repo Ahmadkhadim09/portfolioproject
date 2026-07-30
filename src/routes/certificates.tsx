@@ -20,6 +20,8 @@ function Certificates() {
     "/images/certificates/13.png",
     "/images/certificates/14.png",
     "/images/certificates/15.png",
+    "/images/certificates/16.jpg",
+    "/images/certificates/17.jpg",
   ];
 
   // Use the actual files from public/images/certificates (existing uploads)
