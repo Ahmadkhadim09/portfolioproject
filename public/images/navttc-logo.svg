@@ -1,0 +1,8 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="96" rx="20" fill="#111827"/>
+  <circle cx="54" cy="48" r="24" fill="#F59E0B"/>
+  <path d="M42 48H66" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <path d="M54 36V60" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <text x="94" y="44" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">NAVTTC</text>
+  <text x="94" y="70" fill="#FBBF24" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600">NATIONAL VOCATIONAL</text>
+</svg>

@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState, FormEvent, useRef } from "react";
+import { Music, Pause } from "lucide-react";
+
+const ambientTrack = "/images/Ek Dil Ek Jaan Padmaavat 320 Kbps.mp3";
 
 /* ------------------------------------------------------------------ */
 /*  Content — edit these to change names, dates and event details      */
@@ -15,12 +18,12 @@ const EVENTS = [
   {
     name: "Walima",
     date: "01st November 2026",
-    place: "Sheranwala Farmhouse, Sector B Bahria Town, Lahore",
+    place: "Sheranwala Farmhouse, 70-B Executive Lodges, Sector B, Bahria Town, Lahore",
     note: "",
   },
 ];
 
-const WALIMA_MAP = "https://maps.app.goo.gl/8syJ6Gec5oLsJ7Vz9";
+const WALIMA_MAP = "https://www.google.com/maps/search/?api=1&query=Sheranwala+Farmhouse%2C+70-B+Executive+Lodges%2C+Sector+B%2C+Bahria+Town%2C+Lahore";
 const WALIMA_CONTACTS = [
   { name: "Abdul Rafay Ahmad Khan", phone: "03224244120" },
   { name: "Owais Ahmad Khan", phone: "03224221287" },
@@ -425,7 +428,6 @@ function CurtainIntro({ initials, onOpened }: { initials: string; onOpened?: () 
 
   useEffect(() => {
     if (!opening) return;
-    onOpened?.();
     const t = setTimeout(() => setGone(true), 2200);
     return () => clearTimeout(t);
   }, [opening]);
@@ -447,7 +449,10 @@ function CurtainIntro({ initials, onOpened }: { initials: string; onOpened?: () 
       >
         <button
           type="button"
-          onClick={() => setOpening(true)}
+          onClick={() => {
+            onOpened?.();
+            setOpening(true);
+          }}
           className="crest-group flex flex-col items-center focus:outline-none"
           aria-label="Open the invitation"
         >
@@ -598,6 +603,56 @@ function Ornament() {
 
 export default function RoyalWeddingInvite() {
   const [revealed, setRevealed] = useState(false);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
+  const startMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) {
+      const newAudio = new Audio(ambientTrack);
+      newAudio.loop = true;
+      newAudio.volume = 0.45;
+      audioRef.current = newAudio;
+      void newAudio.play().catch(() => setMusicPlaying(false));
+      setMusicPlaying(true);
+      return;
+    }
+
+    if (audio.paused) {
+      void audio.play().catch(() => setMusicPlaying(false));
+      setMusicPlaying(true);
+    }
+  };
+
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) {
+      const newAudio = new Audio(ambientTrack);
+      newAudio.loop = true;
+      newAudio.volume = 0.45;
+      audioRef.current = newAudio;
+      void newAudio.play().catch(() => setMusicPlaying(false));
+      setMusicPlaying(true);
+      return;
+    }
+
+    if (musicPlaying) {
+      audio.pause();
+      setMusicPlaying(false);
+    } else {
+      void audio.play().catch(() => setMusicPlaying(false));
+      setMusicPlaying(true);
+    }
+  };
 
   return (
     <div className={`royal-root ${revealed ? "revealed" : ""}`}>
@@ -613,7 +668,21 @@ export default function RoyalWeddingInvite() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,18,15,0.88),rgba(8,25,20,0.82),rgba(5,18,15,0.92))]" aria-hidden="true" />
       </div>
-      <CurtainIntro initials={COUPLE_INITIALS} onOpened={() => setRevealed(true)} />
+      <CurtainIntro
+        initials={COUPLE_INITIALS}
+        onOpened={() => {
+          setRevealed(true);
+          startMusic();
+        }}
+      />
+      <button
+        type="button"
+        onClick={toggleMusic}
+        aria-label={musicPlaying ? "Pause music" : "Play music"}
+        className="fixed top-1/2 right-4 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(203,161,53,0.4)] bg-[rgba(18,32,25,0.9)] text-primary shadow-[0_8px_20px_rgba(203,161,53,0.2)] backdrop-blur transition hover:opacity-90"
+      >
+        {musicPlaying ? <Pause className="h-5 w-5" /> : <Music className="h-5 w-5" />}
+      </button>
 
       <main className="mx-auto max-w-5xl px-5 pb-24 sm:px-8 italic">
         <Starfield />
@@ -633,7 +702,7 @@ export default function RoyalWeddingInvite() {
               </h1>
               <Ornament />
               <p className="text-foreground-90 max-w-md text-sm sm:text-base">
-                Request the honour of your presence at their Walima in the heart of {WEDDING_CITY}
+                "Indeed, with every blessing comes gratitude."
               </p>
               <p className="text-primary mt-4 text-xl sm:text-2xl">
                 {WEDDING_HEADLINE_DATE}

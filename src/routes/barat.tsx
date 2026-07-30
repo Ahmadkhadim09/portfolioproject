@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Music, Pause } from "lucide-react";
+
+const ambientTrack = "/images/Ek Dil Ek Jaan Padmaavat 320 Kbps.mp3";
 
 const heroPalace = "/images/hero-palace.jpg";
 const baraImage2 = "/images/baratimage2.png";
@@ -38,7 +39,7 @@ const EVENTS = [
     name: "Baraat",
     date: "31st October 2026",
     time: "7 PM onwards",
-    venue: "Bella Rose Event Complex, Bedian Road",
+    venue: "Sheranwala Farmhouse, 70-B Executive Lodges, Sector B, Bahria Town, Lahore",
     note: "The grand arrival & the joining of two families",
   },
 ];
@@ -54,81 +55,30 @@ const TARGET = new Date("2026-10-31T19:00:00+05:00").getTime();
 
 function useAmbientMusic() {
   const [playing, setPlaying] = useState(false);
-  const ctxRef = useRef<AudioContext | null>(null);
-  const masterRef = useRef<GainNode | null>(null);
-  const timerRef = useRef<number | null>(null);
-  const stepRef = useRef(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const stop = useCallback(() => {
-    if (timerRef.current) window.clearInterval(timerRef.current);
-    timerRef.current = null;
-    const master = masterRef.current;
-    const ctx = ctxRef.current;
-    if (master && ctx) {
-      master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.setTargetAtTime(0, ctx.currentTime, 0.4);
-    }
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
     setPlaying(false);
   }, []);
 
   const start = useCallback(() => {
-    let ctx = ctxRef.current;
-    if (!ctx) {
-      const Ctor =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!Ctor) return;
-      ctx = new Ctor();
-      ctxRef.current = ctx;
-
-      const master = ctx.createGain();
-      master.gain.value = 0;
-      master.connect(ctx.destination);
-      masterRef.current = master;
-
-      [146.83, 220.0].forEach((freq, i) => {
-        const osc = ctx!.createOscillator();
-        const gain = ctx!.createGain();
-        osc.type = "sine";
-        osc.frequency.value = freq;
-        gain.gain.value = i === 0 ? 0.09 : 0.05;
-        osc.connect(gain).connect(master);
-        osc.start();
-      });
+    if (!audioRef.current) {
+      const audio = new Audio(ambientTrack);
+      audio.loop = true;
+      audio.volume = 0.45;
+      audioRef.current = audio;
     }
 
-    void ctx.resume();
-    const master = masterRef.current!;
-    master.gain.cancelScheduledValues(ctx.currentTime);
-    master.gain.setTargetAtTime(0.35, ctx.currentTime, 0.8);
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    const scale = [293.66, 329.63, 349.23, 440.0, 493.88, 587.33, 659.25, 698.46];
-    const pluck = () => {
-      const c = ctxRef.current;
-      const m = masterRef.current;
-      if (!c || !m) return;
-      const idx = [0, 2, 4, 3, 5, 4, 2, 1, 3, 6, 5, 4][stepRef.current % 12];
-      stepRef.current += 1;
-      const note = scale[idx];
-      const now = c.currentTime;
-
-      [1, 2.02].forEach((mult, i) => {
-        const osc = c.createOscillator();
-        const gain = c.createGain();
-        osc.type = i === 0 ? "triangle" : "sine";
-        osc.frequency.value = note * mult;
-        const peak = i === 0 ? 0.22 : 0.07;
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(peak, now + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.6);
-        osc.connect(gain).connect(m);
-        osc.start(now);
-        osc.stop(now + 2.8);
-      });
-    };
-
-    pluck();
-    timerRef.current = window.setInterval(pluck, 1400);
+    void audio.play().catch(() => {
+      setPlaying(false);
+    });
     setPlaying(true);
   }, []);
 
@@ -136,8 +86,10 @@ function useAmbientMusic() {
 
   useEffect(() => {
     return () => {
-      if (timerRef.current) window.clearInterval(timerRef.current);
-      void ctxRef.current?.close();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
     };
   }, []);
 
@@ -158,19 +110,6 @@ function Divider() {
         className="h-16 w-auto max-w-[80vw] object-contain opacity-80"
       />
     </div>
-  );
-}
-
-function MusicToggle({ playing, onToggle }: { playing: boolean; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onToggle}
-      aria-label={playing ? "Pause music" : "Play music"}
-      className="fixed top-1/2 right-6 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-primary/60 bg-primary text-primary-foreground shadow-[0_8px_20px_rgba(139,92,246,0.35)] backdrop-blur transition-colors hover:bg-primary/90"
-    >
-      {playing ? <Pause className="h-5 w-5" /> : <Music className="h-5 w-5 animate-shimmer" />}
-    </button>
   );
 }
 
@@ -260,11 +199,11 @@ function Countdown() {
   return (
     <div className="mx-auto grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
       {cells.map(([label, value]) => (
-        <div key={label} className="rounded-[1.5rem] border border-yellow-400/60 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-400 px-4 py-6 text-center text-red-950 shadow-[0_20px_60px_rgba(127,29,29,0.2)]">
+        <div key={label} className="rounded-[1.5rem] border border-[#8a5c2a]/60 bg-gradient-to-br from-[#f8e7c1] via-[#e4c172] to-[#b8872f] px-4 py-6 text-center text-[#4b1c1d] shadow-[0_20px_60px_rgba(107,46,34,0.2)]">
           <div className="font-display text-4xl sm:text-5xl">
             {String(value).padStart(2, "0")}
           </div>
-          <div className="label-caps mt-2 text-[0.6rem] text-red-800/80">{label}</div>
+          <div className="label-caps mt-2 text-[0.6rem] text-[#6b2e22]/80">{label}</div>
         </div>
       ))}
     </div>
@@ -327,12 +266,12 @@ function ScratchReveal() {
 
   return (
     <div className="relative mx-auto max-w-xl select-none">
-      <div className="rounded-[1.75rem] border border-yellow-400/60 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-400 px-6 py-14 text-center text-red-950 shadow-[0_20px_70px_rgba(127,29,29,0.2)]">
-        <p className="label-caps text-[0.6rem] text-red-800/80">The Big Day</p>
+      <div className="rounded-[1.75rem] border border-[#8a5c2a]/60 bg-gradient-to-br from-[#f8e7c1] via-[#e4c172] to-[#b8872f] px-6 py-14 text-center text-[#4b1c1d] shadow-[0_20px_70px_rgba(107,46,34,0.2)]">
+        <p className="label-caps text-[0.6rem] text-[#6b2e22]/80">The Big Day</p>
         <p className="mt-4 font-display text-5xl leading-tight sm:text-6xl">
           31 October
         </p>
-        <p className="mt-2 font-display text-3xl tracking-[0.3em] text-red-900">2026</p>
+        <p className="mt-2 font-display text-3xl tracking-[0.3em] text-[#4b1c1d]">2026</p>
       </div>
 
       <canvas
@@ -364,6 +303,10 @@ function Invitation() {
   const [opened, setOpened] = useState(false);
   const music = useAmbientMusic();
 
+  useEffect(() => {
+    music.start();
+  }, [music]);
+
   const handleOpen = () => {
     setOpened(true);
     music.start();
@@ -372,9 +315,8 @@ function Invitation() {
   return (
     <>
       <CurtainIntro open={opened} onOpen={handleOpen} />
-      {opened && <MusicToggle playing={music.playing} onToggle={music.toggle} />}
 
-      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,78,78,0.18),_transparent_45%),linear-gradient(135deg,_#2d0404_0%,_#110202_100%)] text-red-50 italic">
+      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(120,26,36,0.22),_transparent_45%),linear-gradient(135deg,_#2f0609_0%,_#140202_100%)] text-[#f7e8c8] italic">
         {/* HERO */}
         <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
           <img
@@ -384,8 +326,8 @@ function Invitation() {
             height={1024}
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(17,2,2,0.6)_90%)]" />
-          <div className="absolute inset-0 bg-[#130202]/35" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(20,3,5,0.7)_90%)]" />
+          <div className="absolute inset-0 bg-[#140202]/40" />
 
           <img
             src={chandelier}
@@ -413,15 +355,15 @@ function Invitation() {
           />
 
           <div className="animate-rise relative mt-40 flex flex-col items-center sm:mt-52">
-            <p className="label-caps text-red-200">Save the Date</p>
-            <h1 className="mt-6 font-display text-6xl leading-[0.95] bg-gradient-to-r from-red-200 via-yellow-200 to-red-100 bg-clip-text text-transparent sm:text-8xl">
+            <p className="label-caps text-[#f2d692]">Save the Date</p>
+            <h1 className="mt-6 font-display text-6xl leading-[0.95] bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f0d59a] bg-clip-text text-transparent sm:text-8xl">
               Owais
-              <span className="mx-3 block text-3xl italic text-red-100 sm:inline sm:text-4xl">
+              <span className="mx-3 block text-3xl italic text-[#f7e8c8] sm:inline sm:text-4xl">
                 &amp;
               </span>
               Minahil
             </h1>
-            <p className="mt-6 font-display text-2xl tracking-[0.3em] text-red-100">
+            <p className="mt-6 font-display text-2xl tracking-[0.3em] text-[#f7e8c8]">
               31 · 10 · 2026
             </p>
           </div>
@@ -432,17 +374,17 @@ function Invitation() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${baraImage2})` }}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,2,2,0.55),rgba(9,3,3,0.65))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,5,8,0.55),rgba(14,3,4,0.7))]" />
 
           <section className="relative mx-auto -mt-8 w-full max-w-6xl px-4 sm:px-6 sm:-mt-12">
-            <div className="relative overflow-hidden rounded-[2rem] border border-red-400/30 bg-[rgba(17,3,3,0.75)] shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#8a5c2a]/40 bg-[rgba(20,4,5,0.78)] shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.65))]" />
               <div className="relative px-6 py-12 sm:px-10 sm:py-14">
                 <section className="mx-auto max-w-3xl text-center">
-                  <p className="font-display text-2xl text-red-100">
+                  <p className="font-display text-2xl text-[#f7e8c8]">
                     بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
                   </p>
-                  <p className="label-caps mt-8 leading-loose text-red-200/90">
+                  <p className="label-caps mt-8 leading-loose text-[#e3bb69]/90">
                     Together with the blessings of our families
                     <br />
                     we joyfully invite you to celebrate the wedding of
@@ -450,13 +392,13 @@ function Invitation() {
 
                   <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
                     <div className="w-full">
-                      <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Owais</h2>
-                      <p className="mt-3 text-sm text-red-200/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
+                      <h2 className="font-display text-5xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent">Owais</h2>
+                      <p className="mt-3 text-sm text-[#f2d692]/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
                     </div>
-                    <span className="font-display text-3xl italic text-red-100">&amp;</span>
+                    <span className="font-display text-3xl italic text-[#f2d692]">&amp;</span>
                     <div className="w-full">
-                      <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Minahil</h2>
-                      <p className="mt-3 text-sm text-red-200/80">
+                      <h2 className="font-display text-5xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent">Minahil</h2>
+                      <p className="mt-3 text-sm text-[#f2d692]/80">
                         Daughter of Kashif Shuja
                         <br />&amp; Rabia Kashif
                       </p>
@@ -472,24 +414,24 @@ function Invitation() {
 
         {/* SCRATCH REVEAL */}
         <section className="mx-auto max-w-3xl px-6 text-center">
-          <p className="font-display text-2xl text-red-100">
+          <p className="font-display text-2xl text-[#f7e8c8]">
             بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
           </p>
-          <p className="label-caps mt-8 leading-loose text-red-200/90">
+          <p className="label-caps mt-8 leading-loose text-[#e3bb69]/90">
             Together with the blessings of our families
             <br />
             we joyfully invite you to celebrate the wedding of
           </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+          <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
             <div className="w-full">
-              <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Owais</h2>
-              <p className="mt-3 text-sm text-red-200/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
+              <h2 className="font-display text-5xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent">Owais</h2>
+              <p className="mt-3 text-sm text-[#f2d692]/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
             </div>
-            <span className="font-display text-3xl italic text-red-100">&amp;</span>
+            <span className="font-display text-3xl italic text-[#f2d692]">&amp;</span>
             <div className="w-full">
-              <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Minahil</h2>
-              <p className="mt-3 text-sm text-red-200/80">
+              <h2 className="font-display text-5xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent">Minahil</h2>
+              <p className="mt-3 text-sm text-[#f2d692]/80">
                 Daughter of Kashif Shuja
                 <br />&amp; Rabia Kashif
               </p>
@@ -501,8 +443,8 @@ function Invitation() {
 
         {/* SCRATCH REVEAL */}
         <section className="mx-auto max-w-3xl px-6 text-center">
-          <p className="label-caps text-red-200">✦ A Little Secret ✦</p>
-          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
+          <p className="label-caps text-[#e3bb69]">✦ A Little Secret ✦</p>
+          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent sm:text-5xl">
             Scratch to Reveal
           </h2>
           <ScratchReveal />
@@ -513,22 +455,22 @@ function Invitation() {
         {/* EVENTS */}
         <section className="mx-auto max-w-5xl px-6 text-center">
           <div className="text-center">
-            <p className="label-caps text-red-200">✦ The Royal Celebrations ✦</p>
-            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
+            <p className="label-caps text-[#e3bb69]">✦ The Royal Celebrations ✦</p>
+            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent sm:text-5xl">
               Wedding Events
             </h2>
           </div>
 
           <ul className="mt-12 grid place-items-center gap-6">
             {EVENTS.map((ev) => (
-              <li key={ev.n} className="w-full max-w-xl rounded-[2rem] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_70px_rgba(251,191,36,0.2)]">
-                <p className="label-caps text-[0.6rem] text-red-800/80">✦ Event {ev.n} ✦</p>
-                <h3 className="mt-4 font-display text-4xl text-red-900">{ev.name}</h3>
-                <p className="mt-3 text-sm text-red-900/80">
+              <li key={ev.n} className="w-full max-w-xl rounded-[2rem] border border-[#8a5c2a]/50 bg-gradient-to-br from-[#f8e7c1] via-[#e4c172] to-[#b8872f] p-8 text-center text-[#4b1c1d] shadow-[0_20px_70px_rgba(139,92,246,0.12)]">
+                <p className="label-caps text-[0.6rem] text-[#6b2e22]/80">✦ Event {ev.n} ✦</p>
+                <h3 className="mt-4 font-display text-4xl text-[#4b1c1d]">{ev.name}</h3>
+                <p className="mt-3 text-sm text-[#4b1c1d]/80">
                   {ev.date} · {ev.time}
                 </p>
-                <p className="label-caps mt-3 text-[0.6rem] text-red-800/80">{ev.venue}</p>
-                <p className="mt-4 font-display text-lg italic text-red-900/80">{ev.note}</p>
+                <p className="label-caps mt-3 text-[0.6rem] text-[#6b2e22]/80">{ev.venue}</p>
+                <p className="mt-4 font-display text-lg italic text-[#4b1c1d]/80">{ev.note}</p>
               </li>
             ))}
           </ul>
@@ -538,20 +480,20 @@ function Invitation() {
 
         {/* COUNTDOWN */}
         <section className="mx-auto max-w-5xl px-6 text-center">
-          <p className="label-caps text-red-200">✦ The Wait Begins ✦</p>
-          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">
+          <p className="label-caps text-[#e3bb69]">✦ The Wait Begins ✦</p>
+          <h2 className="mt-3 mb-10 font-display text-4xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent sm:text-5xl">
             Counting Down
           </h2>
           <Countdown />
-          <p className="mt-6 text-sm text-red-200/90">Until 31st October 2026 · The Baraat</p>
+          <p className="mt-6 text-sm text-[#f2d692]/90">Until 31st October 2026 · The Baraat</p>
         </section>
 
         <Divider />
 
         {/* RSVP */}
         <section className="mx-auto max-w-xl px-6 text-center">
-          <p className="label-caps text-red-200">✦ Kindly Confirm ✦</p>
-          <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-400 via-red-300 to-yellow-100 bg-clip-text text-transparent sm:text-5xl">R.S.V.P</h2>
+          <p className="label-caps text-[#e3bb69]">✦ Kindly Confirm ✦</p>
+          <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-[#b33e47] via-[#8c252f] to-[#f2d692] bg-clip-text text-transparent sm:text-5xl">R.S.V.P</h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 sm:items-stretch">
             {RSVP_CONTACTS.map((c) => (
               <li key={c.phone} className="w-full">
@@ -559,14 +501,14 @@ function Invitation() {
                   href={`https://wa.me/92${c.phone.replace(/-/g, "").replace(/^0/, "")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex h-full flex-col justify-between rounded-[2rem] border border-red-500/40 bg-[rgba(17,3,3,0.82)] p-8 text-center text-red-100 shadow-[0_24px_90px_-24px_rgba(255,50,50,0.35)] transition duration-300 hover:-translate-y-1 hover:border-red-400/70 hover:bg-[rgba(24,4,5,0.95)]"
+                  className="group flex h-full flex-col justify-between rounded-[2rem] border border-[#8a5c2a]/40 bg-[rgba(18,4,5,0.82)] p-8 text-center text-[#f7e8c8] shadow-[0_24px_90px_-24px_rgba(120,26,36,0.35)] transition duration-300 hover:-translate-y-1 hover:border-[#d4b15b]/60 hover:bg-[rgba(28,6,8,0.95)]"
                 >
                   <div>
-                    <p className="text-sm uppercase tracking-[0.35em] text-red-300/90">WhatsApp RSVP</p>
-                    <h3 className="mt-4 font-display text-3xl font-semibold text-red-100">{c.name}</h3>
-                    <p className="mt-3 text-sm text-red-200/80">Message this number to confirm attendance</p>
+                    <p className="text-sm uppercase tracking-[0.35em] text-[#e3bb69]/90">WhatsApp RSVP</p>
+                    <h3 className="mt-4 font-display text-3xl font-semibold text-[#f7e8c8]">{c.name}</h3>
+                    <p className="mt-3 text-sm text-[#f2d692]/80">Message this number to confirm attendance</p>
                   </div>
-                  <span className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-red-500 px-4 py-3 text-sm font-semibold text-red-50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
+                  <span className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#8c252f] to-[#c08b2f] px-4 py-3 text-sm font-semibold text-[#f7e8c8] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                     {c.phone}
                   </span>
                 </a>
@@ -580,18 +522,18 @@ function Invitation() {
         {/* VENUES */}
         <section className="mx-auto max-w-5xl px-6 text-center">
           <div className="text-center">
-            <p className="label-caps text-red-200">✦ Find Your Way ✦</p>
-            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">Venues</h2>
+            <p className="label-caps text-[#e3bb69]">✦ Find Your Way ✦</p>
+            <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-[#f7e8c8] via-[#d4b15b] to-[#f2d692] bg-clip-text text-transparent sm:text-5xl">Venues</h2>
           </div>
             <ul className="mt-12 grid gap-6">
             {EVENTS.map((ev) => (
-              <li key={ev.n} className="rounded-[2rem] border border-red-400/30 bg-red-950/30 p-8 text-center text-red-50 shadow-[0_20px_70px_rgba(0,0,0,0.2)]">
-                <p className="label-caps text-[0.6rem] text-red-800/80">✦ {ev.name} ✦</p>
-                <h3 className="mt-3 font-display text-3xl text-red-900">{ev.venue}</h3>
-                <p className="mt-2 text-sm text-red-900/80">
+              <li key={ev.n} className="rounded-[2rem] border border-[#8a5c2a]/30 bg-[rgba(22,5,7,0.55)] p-8 text-center text-[#f7e8c8] shadow-[0_20px_70px_rgba(0,0,0,0.2)]">
+                <p className="label-caps text-[0.6rem] text-[#e3bb69]/80">✦ {ev.name} ✦</p>
+                <h3 className="mt-3 font-display text-3xl text-[#f2d692]">{ev.venue}</h3>
+                <p className="mt-2 text-sm text-[#f2d692]/80">
                   {ev.date} · {ev.time}
                 </p>
-                <div className="mt-8 overflow-hidden rounded-sm border border-red-400/40">
+                <div className="mt-8 overflow-hidden rounded-sm border border-[#8a5c2a]/40">
                   <iframe
                     title={`Map to ${ev.venue}`}
                     src={`https://www.google.com/maps?q=${encodeURIComponent(ev.venue + ", Lahore")}&output=embed`}
@@ -604,7 +546,7 @@ function Invitation() {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ev.venue + ", Lahore")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="label-caps mt-6 inline-block border-b border-red-700/50 pb-1 text-[0.6rem] text-red-800 hover:text-red-950"
+                  className="label-caps mt-6 inline-block border-b border-[#8a5c2a]/50 pb-1 text-[0.6rem] text-[#e3bb69] hover:text-[#f7e8c8]"
                 >
                   Open in Google Maps
                 </a>
@@ -616,8 +558,8 @@ function Invitation() {
         <Divider />
 
         <footer className="px-6 pb-24 text-center">
-          <p className="font-display text-3xl text-red-100">✦</p>
-          <p className="mx-auto mt-4 max-w-xl font-display text-xl italic text-red-200/90">
+          <p className="font-display text-3xl text-[#e3bb69]">✦</p>
+          <p className="mx-auto mt-4 max-w-xl font-display text-xl italic text-[#f2d692]/90">
             We cannot wait to celebrate this beautiful occasion with your presence, love, and
             blessings.
           </p>

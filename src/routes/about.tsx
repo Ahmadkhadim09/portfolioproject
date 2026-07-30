@@ -32,12 +32,12 @@ const education = [
 ];
 
 const experience = [
-  { company: "ZAI Systems (SMC-Private) Limited", role: "Founder / CEO", period: "Jan 2015 - Present", logo: "/images/mainonelogo.webp", accentClass: "bg-gradient-to-br from-fuchsia-500/20 to-violet-500/10 text-fuchsia-300" },
-  { company: "Soloinsight - Cloud Gate Platform", role: "Technical Project Manager", period: "Feb 2023 - Present", logo: "https://www.google.com/s2/favicons?sz=128&domain=soloinsight.com", accentClass: "bg-gradient-to-br from-cyan-500/20 to-sky-500/10 text-cyan-300" },
-  { company: "National Vocational and Technical Training Commission (NAVTTC)", role: "Mentor", period: "May 2023 - Present", logo: "https://www.google.com/s2/favicons?sz=128&domain=navttc.org.pk", accentClass: "bg-gradient-to-br from-amber-500/20 to-orange-500/10 text-amber-300" },
-  { company: "EVS Professional Training Institute", role: "Mentor", period: "Aug 2021 - Mar 2023", logo: FaChalkboardTeacher, accentClass: "bg-gradient-to-br from-emerald-500/20 to-lime-500/10 text-emerald-300" },
+  { company: "ZAI Systems (SMC-Private) Limited", role: "Founder / CEO", period: "Jan 2015 - Present", logo: "/images/zai-systems-logo.svg", accentClass: "bg-gradient-to-br from-fuchsia-500/20 to-violet-500/10 text-fuchsia-300" },
+  { company: "Soloinsight - Cloud Gate Platform", role: "Technical Project Manager", period: "Feb 2023 - Present", logo: "/images/soloinsight-logo.svg", accentClass: "bg-gradient-to-br from-cyan-500/20 to-sky-500/10 text-cyan-300" },
+  { company: "National Vocational and Technical Training Commission (NAVTTC)", role: "Mentor", period: "May 2023 - Present", logo: "/images/navttc-logo.svg", accentClass: "bg-gradient-to-br from-amber-500/20 to-orange-500/10 text-amber-300" },
+  { company: "EVS Professional Training Institute", role: "Mentor", period: "Aug 2021 - Mar 2023", logo: "/images/evs-logo.svg", accentClass: "bg-gradient-to-br from-emerald-500/20 to-lime-500/10 text-emerald-300" },
   { company: "Rodeo Logistics", role: "Project Manager / Scrum Master", period: "May 2022 - Jan 2023", logo: "/images/rodeo-logistics-logo.svg", accentClass: "bg-gradient-to-br from-rose-500/20 to-pink-500/10 text-rose-300" },
-  { company: "SIMPLEX LOGIX", role: "Senior Software Engineer / Project Lead", period: "Oct 2020 - Apr 2022", logo: "https://www.google.com/s2/favicons?sz=128&domain=simplexlogix.com", accentClass: "bg-gradient-to-br from-indigo-500/20 to-blue-500/10 text-indigo-300" },
+  { company: "SIMPLEX LOGIX", role: "Senior Software Engineer / Project Lead", period: "Oct 2020 - Apr 2022", logo: "/images/simplex-logix-logo.svg", accentClass: "bg-gradient-to-br from-indigo-500/20 to-blue-500/10 text-indigo-300" },
 ];
 
 const techStack = [
@@ -287,11 +287,17 @@ function About() {
                     return (
                       <GlassCard key={i} className="p-8 !rounded-[20px] transition-all hover:bg-white/[0.08] hover:border-violet-500/30">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                          <div className={`flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/90 p-2 shadow-sm ${exp.accentClass}`}>
+                          <div className={`flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/95 p-2 shadow-sm ${exp.accentClass}`}>
                             {LogoIcon ? (
                               <LogoIcon className="h-6 w-6" />
                             ) : (
-                              <Img src={exp.logo as string} alt={`${exp.company} logo`} className="h-full w-full object-contain" />
+                              <Img
+                                src={exp.logo as string}
+                                alt={`${exp.company} logo`}
+                                loading="lazy"
+                                decoding="async"
+                                className="h-full w-full object-contain object-center p-1"
+                              />
                             )}
                           </div>
                           <div className="flex-grow">

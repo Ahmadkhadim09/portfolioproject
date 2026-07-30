@@ -529,6 +529,19 @@ iframe[src*="lovable"] {
   overflow: hidden;
 }
 
+.award-card-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.award-card-link:hover,
+.award-card-link:focus-visible {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(139, 92, 246, 0.16);
+  outline: none;
+}
+
 .award-card::before {
   content: "";
   position: absolute;

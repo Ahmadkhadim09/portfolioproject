@@ -47,7 +47,7 @@ const features = [
   },
   {
     title: "Cloud Deployment",
-    desc: "Deploying secure, production-ready applications with modern DevOps practices.",
+    desc: "Deploying secure,production-ready applications with modern DevOps practices.",
     icon: FaRocket,
     accentClass: "bg-gradient-to-br from-emerald-500/30 to-lime-500/20 text-emerald-400",
   },
@@ -275,7 +275,7 @@ function Home() {
             <h2 className="font-display text-4xl font-bold text-white tracking-tight leading-tight sm:text-5xl">
               Building Intelligent Digital Solutions
             </h2>
-            <p className="mt-5 text-[#A8A8B8] text-lg leading-relaxed tracking-normal">
+            <p className="mt-5 text-[#A8A8B8] text-lg leading-8 tracking-[0.01em] text-justify hyphens-auto">
               Leveraging cutting-edge AI, intelligent automation, and modern web development to build scalable applications that drive efficiency, optimize business processes, and create exceptional digital experiences.
             </p>
           </RevealOnScroll>
@@ -288,7 +288,7 @@ function Home() {
                   <f.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white tracking-tight">{f.title}</h3>
-                <p className="mt-3 text-[#A8A8B8] leading-relaxed flex-1 text-justify">{f.desc}</p>
+                <p className="mt-3 flex-1 text-[#A8A8B8] leading-7 tracking-[0.01em] text-justify hyphens-auto">{f.desc}</p>
               </GlassCard>
             </RevealOnScroll>
           ))}

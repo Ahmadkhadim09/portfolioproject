@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Owais Ahmad Khan — Visionary Leader & Tech Entrepreneur" },
-      { name: "description", content: "Portfolio of Owais Ahmad Khan — CEO of Zai Systems, IT coach, speaker and podcast host." },
+      { name: "description", content: "Portfolio of Owais Ahmad Khan — CTO of Zai Systems, IT coach, speaker and podcast host." },
       { name: "author", content: "Owais Ahmad Khan" },
       { property: "og:title", content: "Owais Ahmad Khan — Visionary Leader & Tech Entrepreneur" },
       { property: "og:description", content: "Portfolio, podcast, awards and broadcast channels of Owais Ahmad Khan." },

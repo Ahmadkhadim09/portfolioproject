@@ -64,21 +64,28 @@ function Awards() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
             {awards.map((award) => (
-              <div key={award.id} className={award.file ? "award-card" : "award-card-empty"}>
-                {award.file && (
-                  <>
-                    <Img
-                      src={`/images/${award.file}.${award.ext}`}
-                      alt={`Award ${award.id}`}
-                      placeholderLabel={`Award ${award.id}`}
-                      loading="lazy"
-                      className="award-image"
-                    />
-                    <h3 className="award-title">{award.title}</h3>
-                    <p className="award-description">{award.description}</p>
-                  </>
-                )}
-              </div>
+              award.file ? (
+                <a
+                  key={award.id}
+                  href={`/images/${award.file}.${award.ext}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="award-card award-card-link"
+                  aria-label={`Open ${award.title} award image`}
+                >
+                  <Img
+                    src={`/images/${award.file}.${award.ext}`}
+                    alt={`Award ${award.id}`}
+                    placeholderLabel={`Award ${award.id}`}
+                    loading="lazy"
+                    className="award-image"
+                  />
+                  <h3 className="award-title">{award.title}</h3>
+                  <p className="award-description">{award.description}</p>
+                </a>
+              ) : (
+                <div key={award.id} className="award-card-empty" />
+              )
             ))}
           </div>
         </div>

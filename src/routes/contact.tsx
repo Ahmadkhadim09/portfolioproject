@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Loader2, MapPin } from "lucide-react";
 import { FiPhone, FiGlobe } from "react-icons/fi";
-import { SiGmail, SiInstagram } from "react-icons/si";
-import { FaLinkedin } from "react-icons/fa";
+import { SiGmail, SiInstagram, SiWhatsapp } from "react-icons/si";
+import { FaLinkedin, FaGoogle, FaMapMarkerAlt } from "react-icons/fa";
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { toast } from "sonner";
 import { Img } from "@/components/Img";
@@ -24,17 +24,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  {
-    icon: SiGmail,
-    label: "Email",
-    value: "owais.ahmad60@gmail.com",
-    href: "mailto:owais.ahmad60@gmail.com",
-    iconColor: "#EA4335",
-    background: "rgba(234, 67, 53, 0.12)",
-    glow: "rgba(234, 67, 53, 0.25)",
-  },
-  {
-    icon: FiPhone,
+   {
+    icon: SiWhatsapp,
     label: "Phone",
     value: "0322 4221287",
     href: "tel:03224221287",
@@ -42,6 +33,16 @@ const channels = [
     background: "rgba(37, 211, 102, 0.12)",
     glow: "rgba(37, 211, 102, 0.25)",
   },
+  {
+    icon: FaGoogle,
+    label: "Email",
+    value: "owais.ahmad60@gmail.com",
+    href: "mailto:owais.ahmad60@gmail.com",
+    iconColor: "#EA4335",
+    background: "rgba(234, 67, 53, 0.12)",
+    glow: "rgba(234, 67, 53, 0.25)",
+  },
+
   {
     icon: FiGlobe,
     label: "Website",
@@ -70,7 +71,7 @@ const channels = [
     glow: "rgba(221, 42, 123, 0.25)",
   },
   {
-    icon: MapPin,
+    icon: FaMapMarkerAlt,
     label: "Location",
     value: "Lahore, Pakistan",
     href: "#",
@@ -259,7 +260,7 @@ function Contact() {
                       >
                         <c.icon
                           className="h-[26px] w-[26px]"
-                          style={{ color: c.iconColor }}
+                          style={c.label === "Phone" ? { color: c.iconColor } : undefined}
                         />
                       </span>
                       <span className="flex-1">

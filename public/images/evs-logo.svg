@@ -1,0 +1,7 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="96" rx="20" fill="#0F172A"/>
+  <path d="M46 28L28 48L46 68" stroke="#34D399" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M74 28L92 48L74 68" stroke="#34D399" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="112" y="46" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">EVS</text>
+  <text x="112" y="72" fill="#6EE7B7" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600">TRAINING</text>
+</svg>
