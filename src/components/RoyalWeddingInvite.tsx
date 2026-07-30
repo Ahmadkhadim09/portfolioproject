@@ -6,18 +6,24 @@ import { useEffect, useMemo, useState, FormEvent, useRef } from "react";
 
 const COUPLE_INITIALS = "O & M";
 const COUPLE_NAMES = ["Owais", "Minahil"];
-const WEDDING_DATE = "2027-02-15T20:00:00+05:30"; // Walima date/time
+const WEDDING_DATE = "2026-11-01T19:00:00+05:00"; // Walima date/time
 const WEDDING_CITY = "Lahore";
-const WEDDING_HEADLINE_DATE = "15 February 2027 · Lahore";
+const WEDDING_HEADLINE_DATE = "01 November 2026 · Lahore";
 const RSVP_DEADLINE = "Please reply by 20 January 2027";
 
 const EVENTS = [
   {
     name: "Walima",
-    date: "15 February 2027 · 8:00 PM",
-    place: "Char Bagh Terrace",
-    note: "A moonlit feast to close the celebrations.",
+    date: "01st November 2026",
+    place: "Sheranwala Farmhouse, Sector B Bahria Town, Lahore",
+    note: "",
   },
+];
+
+const WALIMA_MAP = "https://maps.app.goo.gl/8syJ6Gec5oLsJ7Vz9";
+const WALIMA_CONTACTS = [
+  { name: "Abdul Rafay Ahmad Khan", phone: "03224244120" },
+  { name: "Owais Ahmad Khan", phone: "03224221287" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -47,8 +53,7 @@ function RoyalStyles() {
         --border: rgba(203,161,53,0.35);
 
         font-family: "Karla", "Segoe UI", system-ui, sans-serif;
-        background: linear-gradient(160deg, #122019 0%, #16261f 45%, #2a1b16 100%);
-        background-attachment: fixed;
+        background: transparent;
         color: var(--foreground);
         min-height: 100vh;
         position: relative;
@@ -229,10 +234,10 @@ function WalimaHeroBG() {
   return (
     <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{ backgroundImage: "url('/images/hero-palace.jpg')" }}
+        className="absolute inset-0 bg-[url('/images/walima-hero.jpg')] bg-cover bg-center bg-no-repeat bg-fixed scale-105"
+        aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(9,15,11,0.84),rgba(20,33,24,0.38),rgba(90,42,39,0.4))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,18,15,0.88),rgba(8,25,20,0.82),rgba(5,18,15,0.92))]" />
     </div>
   );
 }
@@ -306,7 +311,10 @@ function Countdown({ date }: { date: string }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
       {UNITS.map(({ key, label }) => (
-        <div key={key} className="panel-royal arch-top flex flex-col items-center px-4 py-6 sm:py-8">
+        <div
+          key={key}
+          className="panel-royal arch-top flex flex-col items-center px-4 py-6 sm:py-8 !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)] hover:shadow-[0_8px_30px_rgba(203,161,53,0.06)]"
+        >
           <span className="jali pointer-events-none absolute inset-0" aria-hidden="true" />
           <span className="font-display text-gold-gradient text-4xl leading-none sm:text-5xl">
             {mounted ? String(time[key as keyof typeof time]).padStart(2, "0") : "--"}
@@ -375,13 +383,13 @@ function ScratchReveal() {
   };
 
   return (
-    <div className="relative mx-auto max-w-xl select-none mt-12 mb-8">
-      <div className="panel-royal rounded-sm px-6 py-14 text-center">
+    <div className="relative mx-auto max-w-2xl select-none mt-12 mb-8 px-4">
+      <div className="panel-royal rounded-sm px-6 py-14 text-center !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)] overflow-visible">
         <p className="label-caps text-[0.6rem] text-muted-foreground uppercase tracking-[0.2em]">The Big Day</p>
-        <p className="mt-4 font-display text-5xl leading-tight text-gold-gradient sm:text-6xl" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
-          15 February
+        <p className="mt-4 font-display text-4xl leading-tight text-gold-gradient sm:text-5xl break-words whitespace-normal" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
+          01 November
         </p>
-        <p className="mt-2 text-3xl tracking-[0.3em] text-primary" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>2027</p>
+        <p className="mt-2 text-2xl sm:text-3xl tracking-[0.3em] text-primary" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>2026</p>
       </div>
 
       <canvas
@@ -493,7 +501,7 @@ function RsvpForm() {
 
   if (done) {
     return (
-      <div className="panel-royal arch-top px-8 py-14 text-center">
+      <div className="panel-royal arch-top px-8 py-14 text-center !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)]">
         <span className="jali pointer-events-none absolute inset-0" aria-hidden="true" />
         <p className="text-gold-gradient text-3xl" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}>
           Shukriya
@@ -510,7 +518,7 @@ function RsvpForm() {
   const labelClass = "text-muted-foreground mb-2 block text-[0.65rem] uppercase tracking-[0.3em]";
 
   return (
-    <form onSubmit={onSubmit} className="panel-royal arch-top px-6 py-10 sm:px-10">
+    <form onSubmit={onSubmit} className="panel-royal arch-top px-6 py-10 sm:px-10 !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)]">
       <span className="jali pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="relative space-y-6">
         <div>
@@ -594,12 +602,26 @@ export default function RoyalWeddingInvite() {
   return (
     <div className={`royal-root ${revealed ? "revealed" : ""}`}>
       <RoyalStyles />
+      <div className="fixed inset-0 -z-10">
+        <img
+          src="/images/walimabgmain.png"
+          alt="Wedding background"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center bg-fixed"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,18,15,0.88),rgba(8,25,20,0.82),rgba(5,18,15,0.92))]" aria-hidden="true" />
+      </div>
       <CurtainIntro initials={COUPLE_INITIALS} onOpened={() => setRevealed(true)} />
 
-      <main className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
+      <main className="mx-auto max-w-5xl px-5 pb-24 sm:px-8 italic">
         <Starfield />
         <section className="reveal reveal-1 relative pt-10 text-center sm:pt-16">
-          <div className="panel-royal arch-top overflow-hidden relative" style={{ minHeight: "50vh" }}>
+          <div
+            className="panel-royal arch-top overflow-hidden relative !bg-[rgba(15,20,18,0.35)] border border-[rgba(212,175,55,0.45)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)]"
+            style={{ minHeight: "50vh" }}
+          >
             <WalimaHeroBG />
             <div className="absolute inset-0 z-10" />
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6">
@@ -640,7 +662,10 @@ export default function RoyalWeddingInvite() {
           <Ornament />
           <div className="mx-auto mt-8 grid max-w-md gap-5">
             {EVENTS.map((event) => (
-              <article key={event.name} className="panel-royal arch-top px-7 py-8">
+              <article
+                key={event.name}
+                className="panel-royal arch-top px-7 py-8 !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)] hover:shadow-[0_8px_30px_rgba(203,161,53,0.06)]"
+              >
                 <span className="jali pointer-events-none absolute inset-0" aria-hidden="true" />
                 <div className="relative">
                   <h3 className="text-primary text-3xl">{event.name}</h3>
@@ -668,11 +693,42 @@ export default function RoyalWeddingInvite() {
           </div>
         </section>
 
-        <footer className="reveal reveal-5 pt-20 text-center">
+        <section className="reveal reveal-5 pt-12" aria-labelledby="walima-details">
+          <h2 id="walima-details" className="text-gold-gradient text-center text-4xl">Walima Details</h2>
+          <div className="mx-auto mt-6 max-w-3xl">
+            <div className="panel-royal arch-top px-6 py-8 !bg-[rgba(15,20,18,0.12)] backdrop-blur-[10px] border border-[rgba(212,175,55,0.12)]">
+                  <p className="text-muted-foreground text-sm">{EVENTS[0].date}</p>
+                  <p className="mt-2 font-display text-lg break-words">{EVENTS[0].place}</p>
+                  <a href={WALIMA_MAP} target="_blank" rel="noreferrer" className="mt-4 inline-block text-primary underline">Open map</a>
+
+                  <div className="mt-6 space-y-3">
+                    {WALIMA_CONTACTS.map((c) => (
+                      <div key={c.phone} className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center">
+                        <div className="text-foreground whitespace-nowrap">{c.name}</div>
+                        <a href={`tel:${c.phone}`} className="text-primary ml-0 sm:ml-4">{c.phone}</a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              <div className="mx-auto mt-8 max-w-3xl">
+                <div className="overflow-hidden rounded-[0.5rem] border border-[rgba(212,175,55,0.12)]">
+                  <iframe
+                    title="Walima location"
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(EVENTS[0].place)}&output=embed`}
+                    loading="lazy"
+                    className="w-full h-72 border-0"
+                  />
+                </div>
+              </div>
+          </div>
+        </section>
+
+        <footer className="reveal pt-12 text-center">
           <Ornament />
           <p className="text-primary text-2xl">{COUPLE_NAMES[0]} & {COUPLE_NAMES[1]}</p>
           <p className="text-muted-foreground mt-2 text-xs uppercase tracking-[0.3em]">
-            {WEDDING_CITY} · February 2027
+            {WEDDING_HEADLINE_DATE}
           </p>
         </footer>
       </main>

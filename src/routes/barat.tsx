@@ -167,7 +167,7 @@ function MusicToggle({ playing, onToggle }: { playing: boolean; onToggle: () => 
       type="button"
       onClick={onToggle}
       aria-label={playing ? "Pause music" : "Play music"}
-      className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-primary/50 bg-card/80 text-primary shadow-[var(--shadow-glow)] backdrop-blur transition-colors hover:bg-accent"
+      className="fixed top-1/2 right-6 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-primary/60 bg-primary text-primary-foreground shadow-[0_8px_20px_rgba(139,92,246,0.35)] backdrop-blur transition-colors hover:bg-primary/90"
     >
       {playing ? <Pause className="h-5 w-5" /> : <Music className="h-5 w-5 animate-shimmer" />}
     </button>
@@ -374,7 +374,7 @@ function Invitation() {
       <CurtainIntro open={opened} onOpen={handleOpen} />
       {opened && <MusicToggle playing={music.playing} onToggle={music.toggle} />}
 
-      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,78,78,0.18),_transparent_45%),linear-gradient(135deg,_#2d0404_0%,_#110202_100%)] text-red-50">
+      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,78,78,0.18),_transparent_45%),linear-gradient(135deg,_#2d0404_0%,_#110202_100%)] text-red-50 italic">
         {/* HERO */}
         <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
           <img
@@ -384,8 +384,8 @@ function Invitation() {
             height={1024}
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_5%,rgba(17,2,2,0.9)_92%)]" />
-          <div className="absolute inset-0 bg-[#130202]/70" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(17,2,2,0.6)_90%)]" />
+          <div className="absolute inset-0 bg-[#130202]/35" />
 
           <img
             src={chandelier}
@@ -427,22 +427,50 @@ function Invitation() {
           </div>
         </section>
 
-        <section className="mx-auto -mt-8 w-full max-w-6xl px-4 sm:px-6 sm:-mt-12">
-          <div className="mx-auto overflow-hidden rounded-[2rem] border border-red-400/30 bg-red-950/40 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
-            <img
-              src={baraImage2}
-              alt="Decorative wedding ambiance and celebration details"
-              loading="lazy"
-              width={1600}
-              height={1000}
-              className="block aspect-[4/3] w-full object-cover object-center sm:aspect-[16/10] lg:aspect-[16/8]"
-            />
-          </div>
-        </section>
+        <div className="relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${baraImage2})` }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,2,2,0.55),rgba(9,3,3,0.65))]" />
 
-        <Divider />
+          <section className="relative mx-auto -mt-8 w-full max-w-6xl px-4 sm:px-6 sm:-mt-12">
+            <div className="relative overflow-hidden rounded-[2rem] border border-red-400/30 bg-[rgba(17,3,3,0.75)] shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.65))]" />
+              <div className="relative px-6 py-12 sm:px-10 sm:py-14">
+                <section className="mx-auto max-w-3xl text-center">
+                  <p className="font-display text-2xl text-red-100">
+                    بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                  </p>
+                  <p className="label-caps mt-8 leading-loose text-red-200/90">
+                    Together with the blessings of our families
+                    <br />
+                    we joyfully invite you to celebrate the wedding of
+                  </p>
 
-        {/* INVITATION */}
+                  <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+                    <div className="w-full">
+                      <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Owais</h2>
+                      <p className="mt-3 text-sm text-red-200/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
+                    </div>
+                    <span className="font-display text-3xl italic text-red-100">&amp;</span>
+                    <div className="w-full">
+                      <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Minahil</h2>
+                      <p className="mt-3 text-sm text-red-200/80">
+                        Daughter of Kashif Shuja
+                        <br />&amp; Rabia Kashif
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <Divider />
+        </div>
+
+        {/* SCRATCH REVEAL */}
         <section className="mx-auto max-w-3xl px-6 text-center">
           <p className="font-display text-2xl text-red-100">
             بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
@@ -453,10 +481,10 @@ function Invitation() {
             we joyfully invite you to celebrate the wedding of
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+            <div className="mt-10 flex flex-col items-center justify-center gap-8 text-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center">
             <div className="w-full">
               <h2 className="font-display text-5xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent">Owais</h2>
-              <p className="mt-3 text-sm text-red-200/80">Owais A Khan</p>
+              <p className="mt-3 text-sm text-red-200/80">Owais Ahmad Khan<br/>Son of Abdul Atique Khan (Late) &amp; Shumyla Khan</p>
             </div>
             <span className="font-display text-3xl italic text-red-100">&amp;</span>
             <div className="w-full">
@@ -491,7 +519,7 @@ function Invitation() {
             </h2>
           </div>
 
-          <ul className="mt-12 grid place-items-center gap-6 sm:grid-cols-2">
+          <ul className="mt-12 grid place-items-center gap-6">
             {EVENTS.map((ev) => (
               <li key={ev.n} className="w-full max-w-xl rounded-[2rem] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_70px_rgba(251,191,36,0.2)]">
                 <p className="label-caps text-[0.6rem] text-red-800/80">✦ Event {ev.n} ✦</p>
@@ -524,19 +552,21 @@ function Invitation() {
         <section className="mx-auto max-w-xl px-6 text-center">
           <p className="label-caps text-red-200">✦ Kindly Confirm ✦</p>
           <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-400 via-red-300 to-yellow-100 bg-clip-text text-transparent sm:text-5xl">R.S.V.P</h2>
-          <ul className="mt-10 grid place-items-center gap-6 sm:grid-cols-2">
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 sm:items-stretch">
             {RSVP_CONTACTS.map((c) => (
               <li key={c.phone} className="w-full">
                 <a
                   href={`https://wa.me/92${c.phone.replace(/-/g, "").replace(/^0/, "")}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="block rounded-[32px] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_80px_rgba(251,191,36,0.2)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-yellow-500/30"
+                  className="group flex h-full flex-col justify-between rounded-[2rem] border border-red-500/40 bg-[rgba(17,3,3,0.82)] p-8 text-center text-red-100 shadow-[0_24px_90px_-24px_rgba(255,50,50,0.35)] transition duration-300 hover:-translate-y-1 hover:border-red-400/70 hover:bg-[rgba(24,4,5,0.95)]"
                 >
-                  <p className="text-sm uppercase tracking-[0.35em] text-red-800/80">WhatsApp</p>
-                  <h3 className="mt-4 font-display text-3xl font-semibold text-red-900">{c.name}</h3>
-                  <p className="mt-3 text-sm text-red-900/80">Tap to chat for RSVP</p>
-                  <span className="mt-6 inline-flex items-center justify-center rounded-full border border-red-500/40 bg-red-900/70 px-4 py-2 text-sm font-semibold text-red-50">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.35em] text-red-300/90">WhatsApp RSVP</p>
+                    <h3 className="mt-4 font-display text-3xl font-semibold text-red-100">{c.name}</h3>
+                    <p className="mt-3 text-sm text-red-200/80">Message this number to confirm attendance</p>
+                  </div>
+                  <span className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-red-500 px-4 py-3 text-sm font-semibold text-red-50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]">
                     {c.phone}
                   </span>
                 </a>
@@ -553,9 +583,9 @@ function Invitation() {
             <p className="label-caps text-red-200">✦ Find Your Way ✦</p>
             <h2 className="mt-3 font-display text-4xl bg-gradient-to-r from-red-200 via-yellow-100 to-red-100 bg-clip-text text-transparent sm:text-5xl">Venues</h2>
           </div>
-          <ul className="mt-12 grid gap-6">
+            <ul className="mt-12 grid gap-6">
             {EVENTS.map((ev) => (
-              <li key={ev.n} className="rounded-[2rem] border border-yellow-400/50 bg-gradient-to-br from-yellow-200 via-amber-100 to-yellow-300 p-8 text-center text-red-950 shadow-[0_20px_70px_rgba(251,191,36,0.2)]">
+              <li key={ev.n} className="rounded-[2rem] border border-red-400/30 bg-red-950/30 p-8 text-center text-red-50 shadow-[0_20px_70px_rgba(0,0,0,0.2)]">
                 <p className="label-caps text-[0.6rem] text-red-800/80">✦ {ev.name} ✦</p>
                 <h3 className="mt-3 font-display text-3xl text-red-900">{ev.venue}</h3>
                 <p className="mt-2 text-sm text-red-900/80">

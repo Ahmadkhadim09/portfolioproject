@@ -180,7 +180,7 @@ function Home() {
         <div className="absolute inset-0 z-0">
           <Img
             src="/images/MainHomeImage.png"
-            alt="Zai Systems"
+            alt="Zai Systems hero background"
             className="hero-photo-mask h-full w-[112%] max-w-none origin-[62%_22%] scale-[0.75] object-cover object-[62%_22%]"
           />
 
@@ -211,7 +211,7 @@ function Home() {
 
               <motion.p
                 {...fadeUp(contentDelay)}
-                className="max-w-md text-[0.95rem] leading-relaxed text-white/80 sm:text-base md:text-lg text-justify"
+                className="max-w-md text-[0.95rem] leading-relaxed text-white/80 sm:text-base md:text-lg"
               >
                 {heroContent.description}
               </motion.p>
@@ -272,10 +272,10 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D0714]/80 via-[#0D0714]/75 to-[#0D0714]/70 rounded-3xl" />
         <div className="relative z-10">
           <RevealOnScroll className="max-w-2xl mx-auto text-center mb-12">
-            <h2 className="font-display text-4xl font-bold text-white tracking-tight sm:text-5xl">
+            <h2 className="font-display text-4xl font-bold text-white tracking-tight leading-tight sm:text-5xl">
               Building Intelligent Digital Solutions
             </h2>
-            <p className="mt-5 text-[#A8A8B8] text-lg">
+            <p className="mt-5 text-[#A8A8B8] text-lg leading-relaxed tracking-normal">
               Leveraging cutting-edge AI, intelligent automation, and modern web development to build scalable applications that drive efficiency, optimize business processes, and create exceptional digital experiences.
             </p>
           </RevealOnScroll>
@@ -412,7 +412,7 @@ function Home() {
         </RevealOnScroll>
 
         <div className="w-full overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.01)" }}>
-          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]" style={{ animation: "marquee 24s linear infinite" }}>
             {[
               "/images/corectaward.png",
               "/images/corraward2.png",
@@ -423,7 +423,7 @@ function Home() {
               "/images/cert-3.png",
               "/images/cert4.png",
             ].map((img, i) => (
-              <div key={i} className="mx-6 flex h-48 w-48 shrink-0 items-center justify-center overflow-hidden rounded-xl glow-panel p-4">
+              <div key={i} className="mx-6 flex h-64 w-64 shrink-0 items-center justify-center overflow-hidden rounded-3xl glow-panel p-4 sm:h-72 sm:w-72 lg:h-[20rem] lg:w-[20rem]">
                 <Img
                   src={img}
                   alt={`Award ${i + 1}`}
@@ -448,7 +448,7 @@ function Home() {
         </RevealOnScroll>
 
         <div className="w-full overflow-hidden rounded-2xl" style={{ background: "rgba(255,255,255,0.01)" }}>
-          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]" style={{ animation: "marquee 24s linear infinite" }}>
             {[...podcastVideos, ...podcastVideos, ...podcastVideos].map((v, i) => (
               <a key={`${v.id}-${i}`} href={`https://youtu.be/${v.id}`} target="_blank" rel="noreferrer" className="mx-4 block w-72 shrink-0 overflow-hidden rounded-xl glass-card transition-all hover:scale-105 hover:border-purple-500/20">
                 <div className="relative aspect-video w-full group">
@@ -537,8 +537,8 @@ function Home() {
             },
           ].map((service, i) => (
             <RevealOnScroll key={service.title} delay={i * 0.1}>
-              <GlassCard className="p-8 h-full flex flex-col group cursor-default hover:border-white/30 transition-colors">
-                <div className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 ${i === 0 ? "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-300" :
+              <GlassCard className="p-8 h-full flex flex-col items-center text-center group cursor-default hover:border-white/30 transition-colors">
+                <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 ${i === 0 ? "bg-gradient-to-br from-violet-500/30 to-indigo-500/20 text-violet-300" :
                   i === 1 ? "bg-gradient-to-br from-cyan-500/30 to-sky-500/20 text-cyan-300" :
                     i === 2 ? "bg-gradient-to-br from-pink-500/30 to-rose-500/20 text-pink-300" :
                       "bg-gradient-to-br from-orange-500/30 to-amber-500/20 text-orange-300"
@@ -546,15 +546,12 @@ function Home() {
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white tracking-tight">{service.title}</h3>
-                <ul className="mt-4 space-y-2 flex-1 text-sm text-[#A8A8B8] text-left">
+                <div className="mt-4 space-y-3 flex-1 text-sm text-[#A8A8B8]">
                   {service.skills.map((skill, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="mr-2 text-violet-400">•</span>
-                      <span>{skill}</span>
-                    </li>
+                    <p key={idx} className="mx-auto max-w-[28rem] text-center">{skill}</p>
                   ))}
-                </ul>
-                <p className="mt-6 text-[#A8A8B8] text-sm leading-relaxed text-left italic">{service.desc}</p>
+                </div>
+                <p className="mt-6 text-[#A8A8B8] text-sm leading-relaxed italic">{service.desc}</p>
               </GlassCard>
             </RevealOnScroll>
           ))}
