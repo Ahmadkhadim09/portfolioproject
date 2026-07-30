@@ -7,8 +7,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-import { MessageCircle } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { SiWhatsapp } from "react-icons/si";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -123,6 +123,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   const shouldReduceMotion = useReducedMotion();
+  const [hoveredWhatsApp, setHoveredWhatsApp] = useState(false);
 
   const currentPath = router.state.location.pathname;
 
@@ -155,9 +156,18 @@ function RootComponent() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact us on WhatsApp"
-          className="fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 transition-transform duration-300 hover:scale-105 hover:shadow-xl sm:bottom-6 sm:right-6"
+          className="fixed bottom-4 right-4 z-[60] flex items-center justify-center rounded-full transition-transform duration-300 sm:bottom-6 sm:right-6"
+          onMouseEnter={() => setHoveredWhatsApp(true)}
+          onMouseLeave={() => setHoveredWhatsApp(false)}
+          style={{
+            height: 72,
+            width: 72,
+            background: 'rgba(37, 211, 102, 0.12)',
+            boxShadow: hoveredWhatsApp ? '0 16px 40px rgba(37, 211, 102, 0.25)' : '0 8px 20px rgba(0,0,0,0.12)',
+            transform: hoveredWhatsApp ? 'scale(1.08) rotate(5deg)' : undefined,
+          }}
         >
-          <MessageCircle className="h-7 w-7" />
+          <SiWhatsapp className="h-[26px] w-[26px]" style={{ color: '#25D366' }} />
         </a>
         <Toaster />
       </div>

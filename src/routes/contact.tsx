@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Loader2 } from "lucide-react";
-import { FaEnvelope, FaPhone, FaGlobe, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
+import { ArrowRight, Loader2, MapPin } from "lucide-react";
+import { FiPhone, FiGlobe } from "react-icons/fi";
+import { SiGmail, SiInstagram } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { toast } from "sonner";
 import { Img } from "@/components/Img";
@@ -23,12 +24,60 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  { icon: FaEnvelope, label: "Email", value: "owais.ahmad60@gmail.com", href: "mailto:owais.ahmad60@gmail.com", accentClass: "bg-gradient-to-br from-fuchsia-500/25 to-violet-500/15 text-fuchsia-200" },
-  { icon: FaPhone, label: "Phone", value: "0322 4221287", href: "tel:03224221287", accentClass: "bg-gradient-to-br from-cyan-500/25 to-sky-500/15 text-cyan-200" },
-  { icon: FaGlobe, label: "Website", value: "zaisystems.com", href: "https://zaisystems.com", accentClass: "bg-gradient-to-br from-emerald-500/25 to-lime-500/15 text-emerald-200" },
-  { icon: FaLinkedin, label: "LinkedIn", value: "linkedin.com/in/owaisahmadkhan", href: "https://linkedin.com/in/owaisahmadkhan", accentClass: "bg-gradient-to-br from-indigo-500/25 to-blue-500/15 text-indigo-200" },
-  { icon: FaInstagram, label: "Instagram", value: "@theowaisahmadkhan", href: "https://www.instagram.com/theowaisahmadkhan/", accentClass: "bg-gradient-to-br from-amber-500/25 to-orange-500/15 text-amber-200" },
-  { icon: FaLocationDot, label: "Location", value: "Lahore, Pakistan", href: "#", accentClass: "bg-gradient-to-br from-rose-500/25 to-pink-500/15 text-rose-200" },
+  {
+    icon: SiGmail,
+    label: "Email",
+    value: "owais.ahmad60@gmail.com",
+    href: "mailto:owais.ahmad60@gmail.com",
+    iconColor: "#EA4335",
+    background: "rgba(234, 67, 53, 0.12)",
+    glow: "rgba(234, 67, 53, 0.25)",
+  },
+  {
+    icon: FiPhone,
+    label: "Phone",
+    value: "0322 4221287",
+    href: "tel:03224221287",
+    iconColor: "#25D366",
+    background: "rgba(37, 211, 102, 0.12)",
+    glow: "rgba(37, 211, 102, 0.25)",
+  },
+  {
+    icon: FiGlobe,
+    label: "Website",
+    value: "zaisystems.com",
+    href: "https://zaisystems.com",
+    iconColor: "#2563EB",
+    background: "rgba(37, 99, 235, 0.12)",
+    glow: "rgba(37, 99, 235, 0.25)",
+  },
+  {
+    icon: FaLinkedin,
+    label: "LinkedIn",
+    value: "linkedin.com/in/owaisahmadkhan",
+    href: "https://linkedin.com/in/owaisahmadkhan",
+    iconColor: "#0A66C2",
+    background: "rgba(10, 102, 194, 0.12)",
+    glow: "rgba(10, 102, 194, 0.25)",
+  },
+  {
+    icon: SiInstagram,
+    label: "Instagram",
+    value: "@theowaisahmadkhan",
+    href: "https://www.instagram.com/theowaisahmadkhan/",
+    iconColor: "#FFFFFF",
+    background: "linear-gradient(135deg, rgba(245, 133, 41, 0.12) 0%, rgba(254, 218, 119, 0.12) 25%, rgba(221, 42, 123, 0.12) 50%, rgba(129, 52, 175, 0.12) 75%, rgba(81, 91, 212, 0.12) 100%)",
+    glow: "rgba(221, 42, 123, 0.25)",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Lahore, Pakistan",
+    href: "#",
+    iconColor: "#EA4335",
+    background: "rgba(234, 67, 53, 0.12)",
+    glow: "rgba(234, 67, 53, 0.25)",
+  },
 ];
 
 interface FormFields {
@@ -75,6 +124,7 @@ function Contact() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [hoveredChannel, setHoveredChannel] = useState<number | null>(null);
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
@@ -194,10 +244,23 @@ function Contact() {
                   <li>
                     <a
                       href={c.href}
-                      className="glass-card flex items-center gap-4 !rounded-2xl p-5 transition-all hover:border-purple-500/20 hover:shadow-lg hover:shadow-purple-500/5 group"
+                      className="glass-card flex items-center gap-4 !rounded-2xl p-5 transition-all hover:border-purple-500/20 hover:shadow-lg hover:shadow-purple-500/5"
+                      aria-label={c.label}
+                      onMouseEnter={() => setHoveredChannel(i)}
+                      onMouseLeave={() => setHoveredChannel(null)}
                     >
-                      <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${c.accentClass} transition-transform group-hover:scale-110`}>
-                        <c.icon className="h-5 w-5" />
+                      <span
+                        className="flex h-[72px] w-[72px] items-center justify-center rounded-full transition-all duration-300 ease-out"
+                        style={{
+                          background: c.background,
+                          transform: hoveredChannel === i ? "scale(1.08) rotate(5deg)" : undefined,
+                          boxShadow: hoveredChannel === i ? `0 16px 40px ${c.glow}` : undefined,
+                        }}
+                      >
+                        <c.icon
+                          className="h-[26px] w-[26px]"
+                          style={{ color: c.iconColor }}
+                        />
                       </span>
                       <span className="flex-1">
                         <span className="block text-xs uppercase tracking-wide text-white/35">{c.label}</span>

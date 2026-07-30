@@ -9,7 +9,17 @@ export interface GalleryItem {
 export const galleryVersion = "20260729";
 
 export function galleryImageSrc(path: string) {
-  return path.includes("?v=") ? path : `${path}?v=${galleryVersion}`;
+  // Append version query param if missing, then resolve against Vite's base URL.
+  const versioned = path.includes("?v=") ? path : `${path}?v=${galleryVersion}`;
+  try {
+    // import.meta.env.BASE_URL is provided by Vite and ensures the asset URL is correct
+    // when the app is served from a subpath (e.g., GitHub Pages). Using `new URL(..., base)`
+    // produces an absolute URL appropriate for the runtime.
+    return new URL(versioned, import.meta.env.BASE_URL).href;
+  } catch (e) {
+    // Fallback: return the versioned path unchanged if URL construction fails.
+    return versioned;
+  }
 }
 
 export const galleryData: GalleryItem[] = [

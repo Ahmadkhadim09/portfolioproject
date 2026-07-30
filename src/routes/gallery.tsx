@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { Img } from "@/components/Img";
-import { galleryData } from "@/data/galleryData";
+import { galleryData, galleryVersion, GalleryItem } from "@/data/galleryData";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 export const Route = createFileRoute("/gallery")({
@@ -22,7 +22,7 @@ function ImagesPage() {
   const [brokenImageIndices, setBrokenImageIndices] = useState<Set<number>>(new Set());
   const shouldReduceMotion = useReducedMotion();
 
-  const displayedGalleryData = [...galleryData];
+  const displayedGalleryData = [...galleryData] as GalleryItem[];
   const gallerySwaps = [
     [0, 18],
     [12, 19],
@@ -36,6 +36,28 @@ function ImagesPage() {
 
   const openLightbox = (index: number) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
+
+  type GalleryCard = GalleryItem & {
+    index: number;
+    slotClassName: string;
+  };
+
+  const galleryCards: GalleryCard[] = [];
+  const slotPattern = ["featured", "small-top", "small-bottom", "portrait-left", "landscape", "portrait-right"];
+
+  for (let i = 0; i < displayedGalleryData.length; ) {
+    const chunk = displayedGalleryData.slice(i, i + slotPattern.length);
+
+    chunk.forEach((item, slotIndex) => {
+      galleryCards.push({
+        ...item,
+        index: i + slotIndex,
+        slotClassName: `gallery-tile--${slotPattern[slotIndex] ?? "portrait-left"}`,
+      });
+    });
+
+    i += chunk.length;
+  }
 
   const nextImage = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -63,7 +85,7 @@ function ImagesPage() {
       <section className="relative isolate overflow-hidden">
         <div className="relative min-h-[70vh] w-full sm:min-h-[78vh] lg:min-h-[88vh]">
           <img
-            src="/images/Maingalleyimage.jpg"
+            src={`/images/Maingalleyimage.jpg?v=${galleryVersion}`}
             alt="Main gallery image"
             loading="eager"
             decoding="async"
@@ -91,34 +113,29 @@ function ImagesPage() {
 
       <section className="relative isolate overflow-hidden py-10 sm:py-12 md:py-20">
         <div className="relative z-10 mx-auto max-w-[1400px] px-3 sm:px-6">
-          <div className="columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3">
-            {displayedGalleryData.map((item, index) => {
-              if (brokenImageIndices.has(index)) return null;
+          <div className="gallery-layout-grid">
+            {galleryCards.map((card) => {
+              if (brokenImageIndices.has(card.index)) return null;
 
               return (
                 <button
-                  key={index}
-                  onClick={() => openLightbox(index)}
-                  className="group relative mb-3 block w-full overflow-hidden rounded-[16px] border border-white/10 bg-[#0b0b0b] text-left shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-white/20 sm:mb-4"
+                  key={card.index}
+                  onClick={() => openLightbox(card.index)}
+                  type="button"
+                  aria-label={`View gallery image ${card.title || card.alt}`}
+                  className={`gallery-tile ${card.slotClassName}`}
                 >
-                  <div className="flex aspect-[4/5] items-center justify-center overflow-hidden bg-[#111111]">
+                  <div className="gallery-tile-media">
                     <Img
-                      src={item.src}
-                      alt={item.alt}
+                      src={card.src}
+                      alt={card.alt}
                       loading="lazy"
-                      onBroken={() => setBrokenImageIndices((current) => new Set(current).add(index))}
-                      className="h-full w-full object-contain transition-all duration-500 group-hover:scale-[1.02]"
+                      onBroken={() => setBrokenImageIndices((current) => new Set(current).add(card.index))}
+                      className="gallery-image"
                     />
                   </div>
 
-                  <div className="px-4 pb-4 pt-3">
-                    <p className="text-[0.6rem] uppercase tracking-[0.28em] text-white/60">
-                      {item.location}
-                    </p>
-                    <p className="mt-1 text-sm font-medium text-white/90">
-                      {item.title}
-                    </p>
-                  </div>
+                  <span className="sr-only">{card.title || card.alt}</span>
                 </button>
               );
             })}
